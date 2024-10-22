@@ -4,14 +4,9 @@ import 'dart:async';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:ui_universidades_gp/presentation/pages/section_five.dart';
-import 'package:ui_universidades_gp/presentation/pages/section_four.dart';
-import 'package:ui_universidades_gp/presentation/pages/section_one.dart';
-import 'package:ui_universidades_gp/presentation/pages/section_three.dart';
-import 'package:ui_universidades_gp/presentation/pages/section_two.dart';
-import '../widgets/float_button.dart';
-import '../widgets/menu_drawer.dart';
-import '../widgets/botton_nav_bar.dart';
+//routes
+import '../../routes/routes_pages.dart';
+import '../../routes/routes_widgets.dart';
 
 //Inicio de la clase
 class HomeScreen extends StatefulWidget {
@@ -102,14 +97,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 style: const TextStyle(color: Colors.black),
                 onSubmitted: (value) {
-                  // Aquí puedes manejar la acción de búsqueda
+                  //
                 },
               ),
               actions: [
                 IconButton(
                   icon: const Icon(Icons.search, color: Colors.black),
                   onPressed: () {
-                    // Aquí puedes manejar la acción al presionar el botón de búsqueda
+                    //
                   },
                 ),
               ],

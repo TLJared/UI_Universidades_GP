@@ -24,7 +24,7 @@ class LoginController extends GetxController {
 
     if (emailError.value.isEmpty && passwordError.value.isEmpty) {
       Get.snackbar('Exito', 'El logueo se ha realizado de forma exitosa');
-      Get.offAllNamed('home_screen');
+      Get.offAllNamed('/form1');
     } else {
       Get.snackbar('Error', 'El logueo se ha validado erroneamente');
     }

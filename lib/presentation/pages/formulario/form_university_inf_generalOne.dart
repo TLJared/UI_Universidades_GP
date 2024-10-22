@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../controllers/university_ccontroller.dart'; // Asegúrate de importar correctamente el controlador
+import '../../controllers/university_ccontroller.dart';
 
 class UniversityInfoView extends StatelessWidget {
   const UniversityInfoView({super.key});
