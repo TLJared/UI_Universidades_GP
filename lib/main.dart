@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ui_universidades_gp/data/services/connectivity_services.dart';
+import 'package:ui_universidades_gp/datosApp/services/connectivity_services.dart';
 import 'package:ui_universidades_gp/presentation/pages/formulario/form_university_administrative_data.dart';
 import 'package:ui_universidades_gp/presentation/pages/formulario/form_university_inf_contact.dart';
 import 'package:ui_universidades_gp/presentation/pages/formulario/form_university_inf_generalOne.dart';

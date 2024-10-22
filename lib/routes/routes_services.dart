@@ -1,1 +1,1 @@
-export '../data/services/connectivity_services.dart';
+export '../datosApp/services/connectivity_services.dart';
