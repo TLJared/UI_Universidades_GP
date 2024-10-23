@@ -132,7 +132,7 @@ class RegisterView extends StatelessWidget {
                       Get.snackbar('Éxito', 'Usuario registrado con éxito');
                       // Redirige a la pantalla de inicio de sesión
                       Get.offAllNamed(
-                          '/login'); // Cambié el método a `Get.offAllNamed` para regresar al login
+                          '/loginP'); // Cambié el método a `Get.offAllNamed` para regresar al login
                     } else {
                       Get.snackbar(
                           'Error', errorMessage); // Muestra el mensaje de error

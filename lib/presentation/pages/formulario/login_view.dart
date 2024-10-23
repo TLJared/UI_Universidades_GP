@@ -75,21 +75,20 @@ class LoginView extends StatelessWidget {
 
                 // Botón de inicio de sesión
                 ElevatedButton(
-                  onPressed: () => Get.toNamed('home_screen'),
-                  // onPressed: () async {
-                  //   String email = emailController.text;
-                  //   String password = passwordController.text;
+                  //onPressed: () => Get.toNamed('home_screen'),
+                  onPressed: () async {
+                    String email = emailController.text;
+                    String password = passwordController.text;
 
-                  //   String? errorMessage =
-                  //       await usuarioController.login(email, password);
-                  //   if (errorMessage == null) {
-                  //     Get.to(() => Get.toNamed(
-                  //         '/home_screen')); // Redirige al HomeScreen l pagina principal
-                  //   } else {
-                  //     Get.snackbar(
-                  //         'Error', errorMessage); // Muestra el mensaje de error
-                  //   }
-                  // },
+                    String? errorMessage =
+                        await usuarioController.login(email, password);
+                    if (errorMessage == null) {
+                      Get.toNamed('/home_screen');
+                    } else {
+                      Get.snackbar(
+                          'Error', errorMessage); // Muestra el mensaje de error
+                    }
+                  },
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(vertical: 15, horizontal: 80),
                     backgroundColor: Colors.cyan, // Cambié el color a turquesa
