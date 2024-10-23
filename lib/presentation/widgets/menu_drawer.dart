@@ -2,6 +2,9 @@
 import 'package:flutter/material.dart';
 //import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+
+import 'package:get/get.dart';
+import 'package:ui_universidades_gp/presentation/controllers/login_controller.dart';
 //import '../../routes/routes_pages.dart';
 
 class MenuWidget extends StatefulWidget {
@@ -15,7 +18,7 @@ class MenuWidget extends StatefulWidget {
 
 class _MenuWidgetState extends State<MenuWidget> {
   // Futuro Controlador para verificar la sesion si se encuentra activa o no.
-  //final LoginController loginController = Get.find<LoginController>();
+  final LoginController loginController = Get.find<LoginController>();
   //final ImagePicker _picker = ImagePicker();
   File? _image;
 
@@ -128,6 +131,15 @@ class _MenuWidgetState extends State<MenuWidget> {
               style: TextStyle(color: Colors.white),
             ),
             onTap: () => widget.onItemClick('Configuración'),
+          ),
+          ListTile(
+            leading:
+                const Icon(Icons.border_color_outlined, color: Colors.white),
+            title: const Text(
+              'Formulario',
+              style: TextStyle(color: Colors.white),
+            ),
+            onTap: () => Get.toNamed('/form1'),
           ),
           ListTile(
             leading: const Icon(Icons.info, color: Colors.white),
@@ -276,7 +288,7 @@ class _MenuWidgetState extends State<MenuWidget> {
               'Cerrar Sesión',
               style: TextStyle(color: Colors.red),
             ),
-            //onTap: loginController.logout,
+            onTap: loginController.logout,
           ),
         ],
       ),

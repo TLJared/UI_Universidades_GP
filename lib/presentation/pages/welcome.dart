@@ -30,7 +30,7 @@ class Welcome extends StatelessWidget {
                 const SizedBox(height: 200.0),
                 ElevatedButton(
                     //onPressed: () => Get.toNamed('/form1'),
-                    onPressed: () => Get.toNamed('/login'),
+                    onPressed: () => Get.toNamed('/loginP'),
                     child: const Icon(Icons.arrow_circle_right_sharp,
                         color: Colors.blueAccent))
               ],

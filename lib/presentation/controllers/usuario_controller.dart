@@ -1,10 +1,11 @@
 import 'package:get/get.dart';
-import '../services/usuario_service.dart';
+import 'package:ui_universidades_gp/datosApp/services/usuario_service.dart';
 
 class UsuarioController extends GetxController {
   final usuarioService = UsuarioService();
 
-  Future<String?> registrarUsuario(String nombre, String email, String password) async {
+  Future<String?> registrarUsuario(
+      String nombre, String email, String password) async {
     try {
       await usuarioService.registrarUsuario(nombre, email, password);
       return null; // Registro exitoso

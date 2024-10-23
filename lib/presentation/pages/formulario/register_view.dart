@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../controllers/usuario_controller.dart';
+import 'package:ui_universidades_gp/presentation/controllers/usuario_controller.dart';
 
 class RegisterView extends StatelessWidget {
   final UsuarioController usuarioController = Get.put(UsuarioController());
@@ -9,6 +9,8 @@ class RegisterView extends StatelessWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
+
+  RegisterView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,7 @@ class RegisterView extends StatelessWidget {
                   color: Colors.cyan, // Cambié el color a azul turquesa
                 ),
                 SizedBox(height: 20),
-                
+
                 // Título de la pantalla
                 Text(
                   'Registro',
@@ -39,7 +41,7 @@ class RegisterView extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 20),
-                
+
                 // Campo de nombre
                 TextField(
                   controller: nombreController,
@@ -55,7 +57,7 @@ class RegisterView extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 20),
-                
+
                 // Campo de email
                 TextField(
                   controller: emailController,
@@ -71,7 +73,7 @@ class RegisterView extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 20),
-                
+
                 // Campo de contraseña
                 TextField(
                   controller: passwordController,
@@ -88,7 +90,7 @@ class RegisterView extends StatelessWidget {
                   obscureText: true,
                 ),
                 SizedBox(height: 20),
-                
+
                 // Campo de confirmar contraseña
                 TextField(
                   controller: confirmPasswordController,
@@ -105,11 +107,12 @@ class RegisterView extends StatelessWidget {
                   obscureText: true,
                 ),
                 SizedBox(height: 30),
-                
+
                 // Botón de registro
                 ElevatedButton(
                   onPressed: () async {
-                    if (passwordController.text != confirmPasswordController.text) {
+                    if (passwordController.text !=
+                        confirmPasswordController.text) {
                       Get.snackbar(
                         "Error",
                         "Las contraseñas no coinciden",
@@ -118,7 +121,8 @@ class RegisterView extends StatelessWidget {
                       return;
                     }
 
-                    String? errorMessage = await usuarioController.registrarUsuario(
+                    String? errorMessage =
+                        await usuarioController.registrarUsuario(
                       nombreController.text,
                       emailController.text,
                       passwordController.text,
@@ -127,9 +131,11 @@ class RegisterView extends StatelessWidget {
                     if (errorMessage == null) {
                       Get.snackbar('Éxito', 'Usuario registrado con éxito');
                       // Redirige a la pantalla de inicio de sesión
-                      Get.offAllNamed('/login'); // Cambié el método a `Get.offAllNamed` para regresar al login
+                      Get.offAllNamed(
+                          '/login'); // Cambié el método a `Get.offAllNamed` para regresar al login
                     } else {
-                      Get.snackbar('Error', errorMessage); // Muestra el mensaje de error
+                      Get.snackbar(
+                          'Error', errorMessage); // Muestra el mensaje de error
                     }
 
                     // Limpia los campos
@@ -140,7 +146,8 @@ class RegisterView extends StatelessWidget {
                   },
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(vertical: 15, horizontal: 80),
-                    backgroundColor: Colors.cyan, // Cambié el color a azul turquesa
+                    backgroundColor:
+                        Colors.cyan, // Cambié el color a azul turquesa
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),

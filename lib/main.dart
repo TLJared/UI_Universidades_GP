@@ -4,6 +4,8 @@ import 'package:ui_universidades_gp/datosApp/services/connectivity_services.dart
 import 'package:ui_universidades_gp/presentation/pages/formulario/form_university_administrative_data.dart';
 import 'package:ui_universidades_gp/presentation/pages/formulario/form_university_inf_contact.dart';
 import 'package:ui_universidades_gp/presentation/pages/formulario/form_university_inf_generalOne.dart';
+import 'package:ui_universidades_gp/presentation/pages/formulario/login_view.dart';
+import 'package:ui_universidades_gp/presentation/pages/formulario/register_view.dart';
 import 'package:ui_universidades_gp/presentation/pages/home_screen.dart';
 import 'package:ui_universidades_gp/presentation/pages/login_screen.dart';
 import 'package:ui_universidades_gp/presentation/pages/welcome.dart';
@@ -49,6 +51,14 @@ class MyApp extends StatelessWidget {
             name: '/login',
             page: () => LoginScreen(),
             transition: Transition.circularReveal),
+        GetPage(
+            name: '/loginP',
+            page: () => LoginView(),
+            transition: Transition.topLevel),
+        GetPage(
+            name: '/registerP',
+            page: () => RegisterView(),
+            transition: Transition.native),
       ],
     );
   }

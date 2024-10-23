@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../controllers/usuario_controller.dart';
-import 'page_view_screen.dart'; // Asegúrate de importar PageViewScreen
+import 'package:ui_universidades_gp/presentation/controllers/usuario_controller.dart';
 
 class LoginView extends StatelessWidget {
   final UsuarioController usuarioController = Get.put(UsuarioController());
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
+  LoginView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class LoginView extends StatelessWidget {
                   color: Colors.cyan, // Cambié el color a turquesa
                 ),
                 SizedBox(height: 20),
-                
+
                 // Título de la pantalla
                 Text(
                   'Iniciar Sesión',
@@ -38,7 +39,7 @@ class LoginView extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 20),
-                
+
                 // Campo de email
                 TextField(
                   controller: emailController,
@@ -54,7 +55,7 @@ class LoginView extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 20),
-                
+
                 // Campo de contraseña
                 TextField(
                   controller: passwordController,
@@ -71,20 +72,24 @@ class LoginView extends StatelessWidget {
                   obscureText: true,
                 ),
                 SizedBox(height: 30),
-                
+
                 // Botón de inicio de sesión
                 ElevatedButton(
-                  onPressed: () async {
-                    String email = emailController.text;
-                    String password = passwordController.text;
+                  onPressed: () => Get.toNamed('home_screen'),
+                  // onPressed: () async {
+                  //   String email = emailController.text;
+                  //   String password = passwordController.text;
 
-                    String? errorMessage = await usuarioController.login(email, password);
-                    if (errorMessage == null) {
-                      Get.to(() => PageViewScreen()); // Redirige a la PageViewScreen
-                    } else {
-                      Get.snackbar('Error', errorMessage); // Muestra el mensaje de error
-                    }
-                  },
+                  //   String? errorMessage =
+                  //       await usuarioController.login(email, password);
+                  //   if (errorMessage == null) {
+                  //     Get.to(() => Get.toNamed(
+                  //         '/home_screen')); // Redirige al HomeScreen l pagina principal
+                  //   } else {
+                  //     Get.snackbar(
+                  //         'Error', errorMessage); // Muestra el mensaje de error
+                  //   }
+                  // },
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(vertical: 15, horizontal: 80),
                     backgroundColor: Colors.cyan, // Cambié el color a turquesa
@@ -105,7 +110,7 @@ class LoginView extends StatelessWidget {
                 // Botón de registro
                 TextButton(
                   onPressed: () {
-                    Get.toNamed('/register');
+                    Get.toNamed('/registerP');
                   },
                   child: Text(
                     "¿No tienes cuenta? Regístrate",

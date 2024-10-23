@@ -2,6 +2,8 @@
 export '../presentation/pages/formulario/form_university_administrative_data.dart';
 export '../presentation/pages/formulario/form_university_inf_contact.dart';
 export '../presentation/pages/formulario/form_university_inf_generalOne.dart';
+export '../presentation/pages/formulario/login_view.dart';
+export '../presentation/pages/formulario/register_view.dart';
 //RUTAS DE LAS PAGINAS
 export '../presentation/pages/home_screen.dart';
 export '../presentation/pages/login_screen.dart';

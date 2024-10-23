@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:ui_universidades_gp/presentation/pages/formulario/login_view.dart';
 import '../../config/validations.dart';
 
 // La clase LoginController extiende a la clase GetxController
@@ -30,10 +31,9 @@ class LoginController extends GetxController {
     }
   }
 
-  // void logout() {
-  //   Get.offAll(() => const LoginScreen(),
-  //       arguments: null, transition: Transition.fade);
-  // }
+  void logout() {
+    Get.offAll(() => LoginView(), arguments: null, transition: Transition.fade);
+  }
 
   void togglePasswordVisibility() {
     isPasswordHidden.value = !isPasswordHidden.value;
