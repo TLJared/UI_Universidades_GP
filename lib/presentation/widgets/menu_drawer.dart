@@ -18,7 +18,7 @@ class MenuWidget extends StatefulWidget {
 
 class _MenuWidgetState extends State<MenuWidget> {
   // Futuro Controlador para verificar la sesion si se encuentra activa o no.
-  final LoginController loginController = Get.find<LoginController>();
+  final LoginController loginController = Get.put(LoginController());
   //final ImagePicker _picker = ImagePicker();
   File? _image;
 
