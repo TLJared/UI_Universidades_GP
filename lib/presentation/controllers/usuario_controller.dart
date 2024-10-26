@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:ui_universidades_gp/datosApp/services/usuario_service.dart';
 
 class UsuarioController extends GetxController {
-  final usuarioService = UsuarioService();
+  final UsuarioService usuarioService = UsuarioService();
 
   Future<String?> registrarUsuario(
       String nombre, String email, String password) async {
@@ -16,10 +16,10 @@ class UsuarioController extends GetxController {
 
   Future<String?> login(String email, String password) async {
     try {
-      await usuarioService.login(email, password);
-      return null; // Login exitoso
+      return await usuarioService.login(
+          email, password); // Retorna el mensaje de error si falla
     } catch (e) {
-      return e.toString(); // Devuelve el mensaje de error
+      return 'Error al intentar iniciar sesión'; // Mensaje genérico si hay un error
     }
   }
 }

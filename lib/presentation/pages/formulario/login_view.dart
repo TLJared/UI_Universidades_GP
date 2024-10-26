@@ -75,18 +75,31 @@ class LoginView extends StatelessWidget {
 
                 // Botón de inicio de sesión
                 ElevatedButton(
-                  //onPressed: () => Get.toNamed('home_screen'),
                   onPressed: () async {
+                    // Validaciones de los campos
+                    if (emailController.text.isEmpty) {
+                      Get.snackbar("Error", "El email es obligatorio",
+                          snackPosition: SnackPosition.TOP);
+                      return;
+                    }
+                    if (passwordController.text.isEmpty) {
+                      Get.snackbar("Error", "La contraseña es obligatoria",
+                          snackPosition: SnackPosition.TOP);
+                      return;
+                    }
+
                     String email = emailController.text;
                     String password = passwordController.text;
 
                     String? errorMessage =
                         await usuarioController.login(email, password);
                     if (errorMessage == null) {
-                      Get.toNamed('/home_screen');
+                      Get.toNamed(
+                          '/home_screen'); // Navegar a la pantalla principal
                     } else {
-                      Get.snackbar(
-                          'Error', errorMessage); // Muestra el mensaje de error
+                      Get.snackbar('Error', errorMessage,
+                          snackPosition:
+                              SnackPosition.TOP); // Mostrar mensaje de error
                     }
                   },
                   style: ElevatedButton.styleFrom(

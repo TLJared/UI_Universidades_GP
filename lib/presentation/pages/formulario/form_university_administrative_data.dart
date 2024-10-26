@@ -25,28 +25,28 @@ class AdminDataView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildTextField(
+              buildTextField(
                 label: 'Rector o presidente:',
                 onChanged: (value) => controller.rector.value = value,
               ),
-              _buildTextField(
+              buildTextField(
                 label: 'Cargo del representante legal:',
                 onChanged: (value) =>
                     controller.cargoRepresentante.value = value,
               ),
-              _buildTextField(
+              buildTextField(
                 label: 'Correo electrónico del representante legal:',
                 onChanged: (value) =>
                     controller.correoRepresentante.value = value,
               ),
-              _buildTextField(
+              buildTextField(
                 label: 'Número de identificación fiscal:',
                 hint: 'Ejemplo: wAB12345678',
                 onChanged: (value) =>
                     controller.identificacionFiscal.value = value,
               ),
               SizedBox(height: 20),
-              _buildContactInputField(controller),
+              buildContactInputField(controller),
               SizedBox(height: 10),
               Obx(() {
                 return Column(
@@ -86,7 +86,7 @@ class AdminDataView extends StatelessWidget {
     );
   }
 
-  Widget _buildTextField({
+  Widget buildTextField({
     required String label,
     String? hint,
     required Function(String) onChanged,
@@ -108,7 +108,7 @@ class AdminDataView extends StatelessWidget {
     );
   }
 
-  Widget _buildContactInputField(UniversityController controller) {
+  Widget buildContactInputField(UniversityController controller) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

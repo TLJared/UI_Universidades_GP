@@ -111,13 +111,31 @@ class RegisterView extends StatelessWidget {
                 // Botón de registro
                 ElevatedButton(
                   onPressed: () async {
+                    // Validaciones de los campos
+                    if (nombreController.text.isEmpty) {
+                      Get.snackbar("Error", "El nombre es obligatorio",
+                          snackPosition: SnackPosition.BOTTOM);
+                      return;
+                    }
+                    if (emailController.text.isEmpty) {
+                      Get.snackbar("Error", "El email es obligatorio",
+                          snackPosition: SnackPosition.BOTTOM);
+                      return;
+                    }
+                    if (passwordController.text.isEmpty) {
+                      Get.snackbar("Error", "La contraseña es obligatoria",
+                          snackPosition: SnackPosition.BOTTOM);
+                      return;
+                    }
+                    if (confirmPasswordController.text.isEmpty) {
+                      Get.snackbar("Error", "Debes confirmar la contraseña",
+                          snackPosition: SnackPosition.BOTTOM);
+                      return;
+                    }
                     if (passwordController.text !=
                         confirmPasswordController.text) {
-                      Get.snackbar(
-                        "Error",
-                        "Las contraseñas no coinciden",
-                        snackPosition: SnackPosition.BOTTOM,
-                      );
+                      Get.snackbar("Error", "Las contraseñas no coinciden",
+                          snackPosition: SnackPosition.BOTTOM);
                       return;
                     }
 
