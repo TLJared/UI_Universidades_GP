@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       title: 'UI UNIVERSIDADES GP',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.light(),
-      initialRoute: '/',
+      initialRoute: '/home_screen',
       getPages: [
         GetPage(
           name: '/',
