@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ui_universidades_gp/presentation/controllers/usuario_controller.dart';
+import '../../../routes/routes_controllers.dart';
 
 class RegisterView extends StatelessWidget {
   final UsuarioController usuarioController = Get.put(UsuarioController());
@@ -9,6 +9,7 @@ class RegisterView extends StatelessWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
+  final RegisterController registerController = Get.put(RegisterController());
 
   RegisterView({super.key});
 
@@ -106,6 +107,64 @@ class RegisterView extends StatelessWidget {
                   ),
                   obscureText: true,
                 ),
+                SizedBox(height: 10),
+                // aqui va un checkbox y que diga aceptar terminos condiciones.
+                Obx(() => Row(
+                      children: [
+                        Checkbox(
+                          value: registerController.isChecked.value,
+                          onChanged: (bool? newValue) {
+                            registerController.verifyCheckbox();
+                          },
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text('Términos y Condiciones'),
+                                  content: SingleChildScrollView(
+                                    child: Text(
+                                      ' '
+                                      ' '
+                                      '',
+                                    ),
+                                  ),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context)
+                                            .pop(); // Cerrar el diálogo
+                                      },
+                                      child: Text('Atras'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          },
+                          child: Text(
+                            'Aceptar términos y condiciones',
+                            style: TextStyle(
+                              color: Colors.blue,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                        ),
+                      ],
+                    )),
+
+                // Obx(() => Row(
+                //       children: [
+                //         Checkbox(
+                //             value: registerController.isChecked.value,
+                //             onChanged: (bool? newValue) {
+                //               registerController.verifyCheckbox();
+                //             }),
+                //         Text('Aceptar Terminos y condiciones'),
+                //       ],
+                //     )),
                 SizedBox(height: 30),
 
                 // Botón de registro
@@ -138,6 +197,7 @@ class RegisterView extends StatelessWidget {
                           snackPosition: SnackPosition.BOTTOM);
                       return;
                     }
+                    if (!registerController.isCheckboxAccepted()) return;
 
                     String? errorMessage =
                         await usuarioController.registrarUsuario(
