@@ -16,6 +16,7 @@ class RegisterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(backgroundColor: Colors.grey[200]),
       backgroundColor: Colors.grey[200], // Fondo más claro
       body: Center(
         child: SingleChildScrollView(
@@ -173,28 +174,28 @@ class RegisterView extends StatelessWidget {
                     // Validaciones de los campos
                     if (nombreController.text.isEmpty) {
                       Get.snackbar("Error", "El nombre es obligatorio",
-                          snackPosition: SnackPosition.BOTTOM);
+                          snackPosition: SnackPosition.TOP);
                       return;
                     }
                     if (emailController.text.isEmpty) {
                       Get.snackbar("Error", "El email es obligatorio",
-                          snackPosition: SnackPosition.BOTTOM);
+                          snackPosition: SnackPosition.TOP);
                       return;
                     }
                     if (passwordController.text.isEmpty) {
                       Get.snackbar("Error", "La contraseña es obligatoria",
-                          snackPosition: SnackPosition.BOTTOM);
+                          snackPosition: SnackPosition.TOP);
                       return;
                     }
                     if (confirmPasswordController.text.isEmpty) {
                       Get.snackbar("Error", "Debes confirmar la contraseña",
-                          snackPosition: SnackPosition.BOTTOM);
+                          snackPosition: SnackPosition.TOP);
                       return;
                     }
                     if (passwordController.text !=
                         confirmPasswordController.text) {
                       Get.snackbar("Error", "Las contraseñas no coinciden",
-                          snackPosition: SnackPosition.BOTTOM);
+                          snackPosition: SnackPosition.TOP);
                       return;
                     }
                     if (!registerController.isCheckboxAccepted()) return;
