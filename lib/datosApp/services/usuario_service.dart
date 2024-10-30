@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class UsuarioService {
-  final String baseUrl = 'http://172.23.192.1:8080/api/usuarios';
+  final String baseUrl = 'http://34.125.57.24:8080/api/usuarios';
 
   Future<void> registrarUsuario(
       String nombre, String email, String password) async {

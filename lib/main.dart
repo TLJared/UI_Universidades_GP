@@ -9,9 +9,11 @@ import 'package:ui_universidades_gp/presentation/pages/formulario/register_view.
 import 'package:ui_universidades_gp/presentation/pages/home_screen.dart';
 import 'package:ui_universidades_gp/presentation/pages/login_screen.dart';
 import 'package:ui_universidades_gp/presentation/pages/welcome.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   Get.put(ConnectivityService());
   runApp(const MyApp());
 }
