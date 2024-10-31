@@ -85,7 +85,7 @@ class _MenuWidgetState extends State<MenuWidget> {
               },
               child: CircleAvatar(
                 radius: 50,
-                backgroundColor: Color.fromARGB(246, 22, 9, 255),
+                backgroundColor: const Color.fromARGB(246, 22, 9, 255),
                 child: _image != null
                     ? ClipRRect(
                         borderRadius: BorderRadius.circular(50),
@@ -270,9 +270,9 @@ class _MenuWidgetState extends State<MenuWidget> {
             },
           ),
           const Spacer(),
-          ListTile(
-            leading: const Icon(Icons.exit_to_app, color: Colors.red),
-            title: const Text(
+          const ListTile(
+            leading: Icon(Icons.exit_to_app, color: Colors.red),
+            title: Text(
               'Cerrar Sesión',
               style: TextStyle(color: Colors.red),
             ),

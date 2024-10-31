@@ -45,7 +45,7 @@ Widget tipoUniversidadDropdown(String tipo, ValueChanged<String?> onChanged) {
       );
     }).toList(),
     onChanged: onChanged,
-    decoration: InputDecoration(
+    decoration: const InputDecoration(
       labelText: 'Tipo de Universidad',
       border: OutlineInputBorder(),
     ),
@@ -57,7 +57,7 @@ Widget fechaFundacionField(
     BuildContext context, DateTime fecha, ValueChanged<DateTime> onChanged) {
   return TextField(
     readOnly: true,
-    decoration: InputDecoration(
+    decoration: const InputDecoration(
       labelText: 'Fecha de Fundación',
       border: OutlineInputBorder(),
     ),
@@ -88,7 +88,7 @@ Widget paisDropdown(String pais, ValueChanged<String?> onChanged) {
       );
     }).toList(),
     onChanged: onChanged,
-    decoration: InputDecoration(
+    decoration: const InputDecoration(
       labelText: 'País',
       border: OutlineInputBorder(),
     ),
@@ -161,14 +161,14 @@ class RedesSocialesField extends StatelessWidget {
         Expanded(
           child: TextField(
             controller: controller,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               labelText: 'Red Social (URL)',
               border: OutlineInputBorder(),
             ),
           ),
         ),
         IconButton(
-          icon: Icon(Icons.add), // Ícono de más
+          icon: const Icon(Icons.add), // Ícono de más
           onPressed: onAdd,
         ),
       ],

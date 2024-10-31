@@ -12,12 +12,12 @@ class AdminDataView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             // Implementa la funcionalidad de retroceso
           },
         ),
-        title: Text('Datos Administrativos', style: TextStyle(fontSize: 24)),
+        title: const Text('Datos Administrativos', style: TextStyle(fontSize: 24)),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -45,9 +45,9 @@ class AdminDataView extends StatelessWidget {
                 onChanged: (value) =>
                     controller.identificacionFiscal.value = value,
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               _buildContactInputField(controller),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Obx(() {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,7 +56,7 @@ class AdminDataView extends StatelessWidget {
                       ListTile(
                         title: Text('${i + 1}- ${controller.contactos[i]}'),
                         trailing: IconButton(
-                          icon: Icon(Icons.delete),
+                          icon: const Icon(Icons.delete),
                           onPressed: () {
                             controller.removeContacto(i);
                           },
@@ -65,7 +65,7 @@ class AdminDataView extends StatelessWidget {
                   ],
                 );
               }),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Center(
                 child: ElevatedButton(
                   onPressed: () {
@@ -73,9 +73,10 @@ class AdminDataView extends StatelessWidget {
                     Get.snackbar('Exito!',
                         'Se ha Guardado correctamente su informacion');
                   },
-                  child: Text('Siguiente'),
+                  // ignore: sort_child_properties_last
+                  child: const Text('Siguiente'),
                   style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                   ),
                 ),
               ),
@@ -94,16 +95,16 @@ class AdminDataView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: TextStyle(fontSize: 16)),
+        Text(label, style: const TextStyle(fontSize: 16)),
         TextField(
           decoration: InputDecoration(
             hintText: hint ?? '',
-            border: OutlineInputBorder(),
-            contentPadding: EdgeInsets.symmetric(horizontal: 10),
+            border: const OutlineInputBorder(),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 10),
           ),
           onChanged: onChanged,
         ),
-        SizedBox(height: 15),
+        const SizedBox(height: 15),
       ],
     );
   }
@@ -112,21 +113,21 @@ class AdminDataView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Personas de contacto (Nombre y cargo)',
+        const Text('Personas de contacto (Nombre y cargo)',
             style: TextStyle(fontSize: 16)),
         Row(
           children: [
             Expanded(
               child: TextField(
                 controller: controller.contactoController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   contentPadding: EdgeInsets.symmetric(horizontal: 10),
                 ),
               ),
             ),
             IconButton(
-              icon: Icon(Icons.add_circle),
+              icon: const Icon(Icons.add_circle),
               onPressed: () {
                 if (controller.contactoController.text.isNotEmpty) {
                   controller.addContacto(controller.contactoController.text);

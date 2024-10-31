@@ -7,9 +7,9 @@ class SectionThree extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('three'),
+        title: const Text('three'),
       ),
-      body: Center(
+      body: const Center(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [Text("Seccion3")],

@@ -31,15 +31,15 @@ class MyApp extends StatelessWidget {
         ),
         GetPage(
             name: '/home_screen',
-            page: () => HomeScreen(),
+            page: () => const HomeScreen(),
             transition: Transition.circularReveal),
         GetPage(
             name: '/form1',
-            page: () => UniversityInfoView(),
+            page: () => const UniversityInfoView(),
             transition: Transition.zoom),
         GetPage(
             name: '/form2',
-            page: () => ContactInfoView(),
+            page: () => const ContactInfoView(),
             transition: Transition.size),
         GetPage(
             name: '/administrative_data',
@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
             transition: Transition.downToUp),
         GetPage(
             name: '/login',
-            page: () => LoginScreen(),
+            page: () => const LoginScreen(),
             transition: Transition.circularReveal),
       ],
     );
