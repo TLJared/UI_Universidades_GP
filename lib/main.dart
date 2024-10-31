@@ -9,9 +9,14 @@ import 'package:ui_universidades_gp/presentation/pages/formulario/register_view.
 import 'package:ui_universidades_gp/presentation/pages/home_screen.dart';
 import 'package:ui_universidades_gp/presentation/pages/login_screen.dart';
 import 'package:ui_universidades_gp/presentation/pages/welcome.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart'; // Este archivo se genera con flutterfire_cli
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   Get.put(ConnectivityService());
   runApp(const MyApp());
 }
@@ -63,3 +68,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+//ppp
