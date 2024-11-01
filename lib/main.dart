@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ui_universidades_gp/datosApp/services/connectivity_services.dart';
+import 'package:ui_universidades_gp/preferencias_usuario/preferencias_usuario.dart';
 import 'package:ui_universidades_gp/presentation/pages/formulario/form_university_administrative_data.dart';
 import 'package:ui_universidades_gp/presentation/pages/formulario/form_university_inf_contact.dart';
 import 'package:ui_universidades_gp/presentation/pages/formulario/form_university_inf_generalOne.dart';
@@ -17,6 +18,8 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+   final prefs = new PreferenciasUsuario();
+    await prefs.initPrefs();
   Get.put(ConnectivityService());
   runApp(const MyApp());
 }

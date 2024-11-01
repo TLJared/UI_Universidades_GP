@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ui_universidades_gp/providers/usuario_providers.dart';
 import '../../../routes/routes_controllers.dart';
 
 class RegisterView extends StatelessWidget {
-  final UsuarioController usuarioController = Get.put(UsuarioController());
-
+  final UsuarioProviders usuarioController = Get.put(UsuarioProviders());
   final nombreController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -13,11 +13,19 @@ class RegisterView extends StatelessWidget {
 
   RegisterView({super.key});
 
+  // Método para validar el email
+  bool isValidEmail(String email) {
+    String pattern =
+        r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'; // Expresión regular para validar el email
+    RegExp regex = RegExp(pattern);
+    return regex.hasMatch(email);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(backgroundColor: Colors.grey[200]),
-      backgroundColor: Colors.grey[200], // Fondo más claro
+      backgroundColor: Colors.grey[200],
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
@@ -25,89 +33,31 @@ class RegisterView extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Icono del logo de la app
                 Icon(
                   Icons.person_add,
                   size: 80,
-                  color: Colors.cyan, // Cambié el color a azul turquesa
+                  color: Colors.cyan,
                 ),
                 SizedBox(height: 20),
-
-                // Título de la pantalla
                 Text(
                   'Registro',
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
-                    color: Colors.cyan, // Cambié el color a azul turquesa
+                    color: Colors.cyan,
                   ),
                 ),
                 SizedBox(height: 20),
-
-                // Campo de nombre
-                TextField(
-                  controller: nombreController,
-                  decoration: InputDecoration(
-                    labelText: "Nombre",
-                    prefixIcon: Icon(Icons.person),
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide.none,
-                    ),
-                  ),
-                ),
+                _buildTextField(nombreController, "Nombre", Icons.person),
                 SizedBox(height: 20),
-
-                // Campo de email
-                TextField(
-                  controller: emailController,
-                  decoration: InputDecoration(
-                    labelText: "Email",
-                    prefixIcon: Icon(Icons.email),
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide.none,
-                    ),
-                  ),
-                ),
+                _buildTextField(emailController, "Email", Icons.email),
                 SizedBox(height: 20),
-
-                // Campo de contraseña
-                TextField(
-                  controller: passwordController,
-                  decoration: InputDecoration(
-                    labelText: "Contraseña",
-                    prefixIcon: Icon(Icons.lock),
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide.none,
-                    ),
-                  ),
-                  obscureText: true,
-                ),
+                _buildTextField(passwordController, "Contraseña", Icons.lock,
+                    isObscured: true),
                 SizedBox(height: 20),
-
-                // Campo de confirmar contraseña
-                TextField(
-                  controller: confirmPasswordController,
-                  decoration: InputDecoration(
-                    labelText: "Confirmar Contraseña",
-                    prefixIcon: Icon(Icons.lock_outline),
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide.none,
-                    ),
-                  ),
-                  obscureText: true,
-                ),
+                _buildTextField(confirmPasswordController,
+                    "Confirmar Contraseña", Icons.lock_outline,
+                    isObscured: true),
                 SizedBox(height: 10),
                 // aqui va un checkbox y que diga aceptar terminos condiciones.
                 Obx(() => Row(
@@ -164,81 +114,151 @@ class RegisterView extends StatelessWidget {
                       ],
                     )),
                 SizedBox(height: 30),
-
-                // Botón de registro
-                ElevatedButton(
-                  onPressed: () async {
-                    // Validaciones de los campos
-                    if (nombreController.text.isEmpty) {
-                      Get.snackbar("Error", "El nombre es obligatorio",
-                          snackPosition: SnackPosition.TOP);
-                      return;
-                    }
-                    if (emailController.text.isEmpty) {
-                      Get.snackbar("Error", "El email es obligatorio",
-                          snackPosition: SnackPosition.TOP);
-                      return;
-                    }
-                    if (passwordController.text.isEmpty) {
-                      Get.snackbar("Error", "La contraseña es obligatoria",
-                          snackPosition: SnackPosition.TOP);
-                      return;
-                    }
-                    if (confirmPasswordController.text.isEmpty) {
-                      Get.snackbar("Error", "Debes confirmar la contraseña",
-                          snackPosition: SnackPosition.TOP);
-                      return;
-                    }
-                    if (passwordController.text !=
-                        confirmPasswordController.text) {
-                      Get.snackbar("Error", "Las contraseñas no coinciden",
-                          snackPosition: SnackPosition.TOP);
-                      return;
-                    }
-                    if (!registerController.isCheckboxAccepted()) return;
-
-                    String? errorMessage =
-                        await usuarioController.registrarUsuario(
-                      nombreController.text,
-                      emailController.text,
-                      passwordController.text,
-                    );
-
-                    if (errorMessage == null) {
-                      Get.snackbar('Éxito', 'Usuario registrado con éxito');
-                      // Redirige a la pantalla de inicio de sesión
-                      Get.offAllNamed(
-                          '/loginP'); // Cambié el método a `Get.offAllNamed` para regresar al login
-                    } else {
-                      Get.snackbar(
-                          'Error', errorMessage); // Muestra el mensaje de error
-                    }
-
-                    // Limpia los campos
-                    nombreController.clear();
-                    emailController.clear();
-                    passwordController.clear();
-                    confirmPasswordController.clear();
-                  },
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(vertical: 15, horizontal: 80),
-                    backgroundColor:
-                        Colors.cyan, // Cambié el color a azul turquesa
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  child: Text(
-                    "Registrar",
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white, // Texto en color blanco
-                    ),
-                  ),
-                ),
+                _buildRegisterButton(context),
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTextField(
+      TextEditingController controller, String labelText, IconData icon,
+      {bool isObscured = false}) {
+    return TextField(
+      controller: controller,
+      decoration: InputDecoration(
+        labelText: labelText,
+        prefixIcon: Icon(icon),
+        filled: true,
+        fillColor: Colors.white,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide.none,
+        ),
+      ),
+      obscureText: isObscured,
+    );
+  }
+
+  Widget _buildCheckbox(BuildContext context) {
+    return Obx(() => Row(
+          children: [
+            Checkbox(
+              value: registerController.isChecked.value,
+              onChanged: (bool? newValue) {
+                registerController.verifyCheckbox();
+              },
+            ),
+            GestureDetector(
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('Términos y Condiciones'),
+                      content: SingleChildScrollView(
+                        child: Text('Aquí van los términos y condiciones...'),
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop(); // Cerrar el diálogo
+                          },
+                          child: Text('Atrás'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              child: Text(
+                'Aceptar términos y condiciones',
+                style: TextStyle(
+                  color: Colors.blue,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+            ),
+          ],
+        ));
+  }
+
+  Widget _buildRegisterButton(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () async {
+        // Validaciones de los campos
+        if (nombreController.text.isEmpty) {
+          Get.snackbar("Error", "El nombre es obligatorio",
+              snackPosition: SnackPosition.TOP);
+          return;
+        }
+        if (emailController.text.isEmpty ||
+            !isValidEmail(emailController.text)) {
+          Get.snackbar("Error", "El email debe ser válido",
+              snackPosition: SnackPosition.TOP);
+          return;
+        }
+        if (passwordController.text.isEmpty) {
+          Get.snackbar("Error", "La contraseña es obligatoria",
+              snackPosition: SnackPosition.TOP);
+          return;
+        }
+        if (passwordController.text.length < 6) {
+          Get.snackbar(
+              "Error", "La contraseña debe tener al menos 6 caracteres",
+              snackPosition: SnackPosition.TOP);
+          return;
+        }
+        if (confirmPasswordController.text.isEmpty) {
+          Get.snackbar("Error", "Debes confirmar la contraseña",
+              snackPosition: SnackPosition.TOP);
+          return;
+        }
+        if (passwordController.text != confirmPasswordController.text) {
+          Get.snackbar("Error", "Las contraseñas no coinciden",
+              snackPosition: SnackPosition.TOP);
+          return;
+        }
+        if (!registerController.isCheckboxAccepted()) {
+          Get.snackbar("Error", "Debes aceptar los términos y condiciones",
+              snackPosition: SnackPosition.TOP);
+          return;
+        }
+
+        // Registrar usuario
+        Map<String, dynamic> result = await usuarioController.registrarUsuario(
+          nombreController.text,
+          emailController.text,
+          passwordController.text,
+        );
+
+        if (result['success']) {
+          Get.snackbar('Éxito', 'Usuario registrado con éxito');
+          // Redirige a la pantalla de inicio de sesión
+          Get.offAllNamed('/loginP');
+          // Limpia los campos después del registro exitoso
+          nombreController.clear();
+          emailController.clear();
+          passwordController.clear();
+          confirmPasswordController.clear();
+        } else {
+          Get.snackbar('Error', result['error']);
+        }
+      },
+      style: ElevatedButton.styleFrom(
+        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 80),
+        backgroundColor: Colors.cyan,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
+      child: Text(
+        "Registrar",
+        style: TextStyle(
+          fontSize: 16,
+          color: Colors.white,
         ),
       ),
     );
