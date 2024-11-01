@@ -8,7 +8,6 @@ class UniversityInfoView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final UniversityController controller = Get.put(UniversityController());
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Información General'),
