@@ -136,13 +136,6 @@ class LoginScreen extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             child: Padding(
               padding: EdgeInsets.only(bottom: 20.0),
-              // child: Text(
-              //   '',
-              //   style: TextStyle(
-              //     color: Colors.grey[600],
-              //     fontSize: 14,
-              //   ),
-              // ),
             ),
           ),
         ],

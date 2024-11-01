@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ui_universidades_gp/presentation/widgets/form_widget.dart';
+
 class DocumentationScreen extends StatefulWidget {
   @override
   _DocumentationScreenState createState() => _DocumentationScreenState();
@@ -9,7 +10,6 @@ class _DocumentationScreenState extends State<DocumentationScreen> {
   final _estatutosController = TextEditingController();
   final _certificadoAcreditacionController = TextEditingController();
   final _planEstudiosController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,9 +21,12 @@ class _DocumentationScreenState extends State<DocumentationScreen> {
         child: Form(
           child: ListView(
             children: [
-              fileUploadField(_estatutosController, 'Estatutos o Reglamentos Internos'),
-              fileUploadField(_certificadoAcreditacionController, 'Certificado de Acreditación'),
-              fileUploadField(_planEstudiosController, 'Plan de Estudios de las Carreras'),
+              fileUploadField(
+                  _estatutosController, 'Estatutos o Reglamentos Internos'),
+              fileUploadField(_certificadoAcreditacionController,
+                  'Certificado de Acreditación'),
+              fileUploadField(
+                  _planEstudiosController, 'Plan de Estudios de las Carreras'),
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {

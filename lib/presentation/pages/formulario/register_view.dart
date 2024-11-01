@@ -126,10 +126,18 @@ class RegisterView extends StatelessWidget {
                                 return AlertDialog(
                                   title: Text('Términos y Condiciones'),
                                   content: SingleChildScrollView(
-                                    child: Text(
-                                      ' '
-                                      ' '
-                                      '',
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          'Al usar UI Universidades GP, aceptas estos términos: \n\n'
+                                          '1.-Datos de Usuario: Recopilamos información personal para mejorar el servicio. Tus datos se tratan con confidencialidad.\n'
+                                          '2.- Seguridad: Tomamos medidas de protección, aunque no podemos garantizar seguridad absoluta.\n'
+                                          '3.- Propiedad: El contenido de la aplicación es propiedad de UI Universidades o sus licenciantes.\n'
+                                          '4.- Responsabilidad: No somos responsables de daños derivados del uso de la aplicación.\n'
+                                          '5.- Cambios: Podemos actualizar estos términos, y te notificaremos sobre ellos.',
+                                          textAlign: TextAlign.left,
+                                        ),
+                                      ],
                                     ),
                                   ),
                                   actions: [
@@ -155,17 +163,6 @@ class RegisterView extends StatelessWidget {
                         ),
                       ],
                     )),
-
-                // Obx(() => Row(
-                //       children: [
-                //         Checkbox(
-                //             value: registerController.isChecked.value,
-                //             onChanged: (bool? newValue) {
-                //               registerController.verifyCheckbox();
-                //             }),
-                //         Text('Aceptar Terminos y condiciones'),
-                //       ],
-                //     )),
                 SizedBox(height: 30),
 
                 // Botón de registro

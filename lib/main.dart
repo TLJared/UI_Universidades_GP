@@ -30,12 +30,12 @@ class MyApp extends StatelessWidget {
       title: 'UI UNIVERSIDADES GP',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.light(),
-      initialRoute: '/home_screen',
+      initialRoute: '/',
       getPages: [
-        // GetPage(
-        //   name: '/',
-        //   page: () => const Welcome(),
-        // ),
+        GetPage(
+          name: '/',
+          page: () => const Welcome(),
+        ),
         GetPage(
             name: '/home_screen',
             page: () => HomeScreen(),
