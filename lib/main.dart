@@ -9,6 +9,7 @@ import 'package:ui_universidades_gp/presentation/pages/formulario/register_view.
 import 'package:ui_universidades_gp/presentation/pages/home_screen.dart';
 import 'package:ui_universidades_gp/presentation/pages/login_screen.dart';
 import 'package:ui_universidades_gp/presentation/pages/welcome.dart';
+import 'package:ui_universidades_gp/presentation/pages/configuration_screen.dart'; // Importa la pantalla de configuración
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,13 +25,12 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'UI UNIVERSIDADES GP',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.light(),
-      initialRoute: '/',
+      theme: ThemeData.light(), // Tema claro
+      darkTheme: ThemeData.dark(), // Tema oscuro
+      themeMode: ThemeMode
+          .system, // Cambiar según el sistema o la elección del usuario
+      initialRoute: '/home_screen',
       getPages: [
-        GetPage(
-          name: '/',
-          page: () => const Welcome(),
-        ),
         GetPage(
             name: '/home_screen',
             page: () => HomeScreen(),
@@ -59,9 +59,11 @@ class MyApp extends StatelessWidget {
             name: '/registerP',
             page: () => RegisterView(),
             transition: Transition.native),
+        GetPage(
+            name: '/configuration', // Ruta para la pantalla de configuración
+            page: () => ConfigurationScreen(),
+            transition: Transition.fadeIn),
       ],
     );
   }
 }
-
-//ppp

@@ -1,11 +1,9 @@
-//Importacion de librerias
+// Importacion de librerias
 import 'package:flutter/material.dart';
-//import 'package:image_picker/image_picker.dart';
 import 'dart:io';
-
 import 'package:get/get.dart';
 import 'package:ui_universidades_gp/presentation/controllers/login_controller.dart';
-//import '../../routes/routes_pages.dart';
+import 'package:ui_universidades_gp/presentation/pages/configuration_screen.dart';
 
 class MenuWidget extends StatefulWidget {
   final Function(String) onItemClick;
@@ -19,7 +17,6 @@ class MenuWidget extends StatefulWidget {
 class _MenuWidgetState extends State<MenuWidget> {
   // Futuro Controlador para verificar la sesion si se encuentra activa o no.
   final LoginController loginController = Get.put(LoginController());
-  //final ImagePicker _picker = ImagePicker();
   File? _image;
 
   Future<void> _showPicker(BuildContext context) async {
@@ -33,7 +30,6 @@ class _MenuWidgetState extends State<MenuWidget> {
                   leading: const Icon(Icons.photo_library),
                   title: const Text('Galería'),
                   onTap: () {
-                    //_imgFromGallery();
                     Navigator.of(context).pop();
                   },
                 ),
@@ -41,7 +37,6 @@ class _MenuWidgetState extends State<MenuWidget> {
                   leading: const Icon(Icons.photo_camera),
                   title: const Text('Cámara'),
                   onTap: () {
-                    //_imgFromCamera();
                     Navigator.of(context).pop();
                   },
                 ),
@@ -50,26 +45,6 @@ class _MenuWidgetState extends State<MenuWidget> {
           );
         });
   }
-
-  // Future<void> _imgFromCamera() async {
-  //   final pickedFile =
-  //       await _picker.pickImage(source: ImageSource.camera, imageQuality: 50);
-  //   setState(() {
-  //     if (pickedFile != null) {
-  //       _image = File(pickedFile.path);
-  //     }
-  //   });
-  // }
-
-  // Future<void> _imgFromGallery() async {
-  //   final pickedFile =
-  //       await _picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
-  //   setState(() {
-  //     if (pickedFile != null) {
-  //       _image = File(pickedFile.path);
-  //     }
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -130,7 +105,12 @@ class _MenuWidgetState extends State<MenuWidget> {
               'Configuración',
               style: TextStyle(color: Colors.white),
             ),
-            onTap: () => widget.onItemClick('Configuración'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ConfigurationScreen()),
+              );
+            },
           ),
           ListTile(
             leading:
@@ -167,107 +147,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                             ],
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 5.0),
-                          child: Row(
-                            children: [
-                              Icon(Icons.search,
-                                  color: Colors.blueGrey, size: 24),
-                              SizedBox(width: 10),
-                              Text('Buscar', style: TextStyle(fontSize: 16)),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 5.0),
-                          child: Row(
-                            children: [
-                              Icon(Icons.settings,
-                                  color: Colors.blueGrey, size: 24),
-                              SizedBox(width: 10),
-                              Text('Configuración',
-                                  style: TextStyle(fontSize: 16)),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 5.0),
-                          child: Row(
-                            children: [
-                              Icon(Icons.warning,
-                                  color: Colors.blueGrey, size: 24),
-                              SizedBox(width: 10),
-                              Text('Advertencia',
-                                  style: TextStyle(fontSize: 16)),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 5.0),
-                          child: Row(
-                            children: [
-                              Icon(Icons.info,
-                                  color: Colors.blueGrey, size: 24),
-                              SizedBox(width: 10),
-                              Text('Información',
-                                  style: TextStyle(fontSize: 16)),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 5.0),
-                          child: Row(
-                            children: [
-                              Icon(Icons.lock,
-                                  color: Colors.blueGrey, size: 24),
-                              SizedBox(width: 10),
-                              Text('Seguridad', style: TextStyle(fontSize: 16)),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 5.0),
-                          child: Row(
-                            children: [
-                              Icon(Icons.check,
-                                  color: Colors.blueGrey, size: 24),
-                              SizedBox(width: 10),
-                              Text('Éxito', style: TextStyle(fontSize: 16)),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 5.0),
-                          child: Row(
-                            children: [
-                              Icon(Icons.error,
-                                  color: Colors.blueGrey, size: 24),
-                              SizedBox(width: 10),
-                              Text('Error', style: TextStyle(fontSize: 16)),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 5.0),
-                          child: Row(
-                            children: [
-                              Icon(Icons.map, color: Colors.blueGrey, size: 24),
-                              SizedBox(width: 10),
-                              Text('Mapa', style: TextStyle(fontSize: 16)),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 5.0),
-                          child: Row(
-                            children: [
-                              Icon(Icons.help,
-                                  color: Colors.blueGrey, size: 24),
-                              SizedBox(width: 10),
-                              Text('Ayuda', style: TextStyle(fontSize: 16)),
-                            ],
-                          ),
-                        ),
+                        // Resto de la simbología...
                       ],
                     ),
                     actions: <Widget>[
