@@ -10,20 +10,18 @@ import 'package:ui_universidades_gp/presentation/pages/formulario/register_view.
 import 'package:ui_universidades_gp/presentation/pages/home_screen.dart';
 import 'package:ui_universidades_gp/presentation/pages/login_screen.dart';
 import 'package:ui_universidades_gp/presentation/pages/welcome.dart';
-<<<<<<< HEAD
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart'; // Este archivo se genera con flutterfire_cli
-=======
+
 import 'package:ui_universidades_gp/presentation/pages/configuration_screen.dart'; // Importa la pantalla de configuración
->>>>>>> isma
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-   final prefs = new PreferenciasUsuario();
-    await prefs.initPrefs();
+  final prefs = new PreferenciasUsuario();
+  await prefs.initPrefs();
   Get.put(ConnectivityService());
   runApp(const MyApp());
 }
@@ -40,8 +38,12 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData.dark(), // Tema oscuro
       themeMode: ThemeMode
           .system, // Cambiar según el sistema o la elección del usuario
-      initialRoute: '/home_screen',
+      initialRoute: '/',
       getPages: [
+        GetPage(
+          name: '/',
+          page: () => const Welcome(),
+        ),
         GetPage(
             name: '/home_screen',
             page: () => HomeScreen(),
