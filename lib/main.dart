@@ -10,12 +10,9 @@ import 'package:ui_universidades_gp/presentation/pages/formulario/register_view.
 import 'package:ui_universidades_gp/presentation/pages/home_screen.dart';
 import 'package:ui_universidades_gp/presentation/pages/login_screen.dart';
 import 'package:ui_universidades_gp/presentation/pages/welcome.dart';
-<<<<<<< HEAD
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart'; // Este archivo se genera con flutterfire_cli
-=======
 import 'package:ui_universidades_gp/presentation/pages/configuration_screen.dart'; // Importa la pantalla de configuración
->>>>>>> isma
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

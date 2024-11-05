@@ -1,29 +1,48 @@
-//Importacion de librerias
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 //routes
 import '../../routes/routes_pages.dart';
 import '../../routes/routes_widgets.dart';
 
-//Inicio de la clase
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final AdvancedDrawerController _advancedDrawerController =
-      AdvancedDrawerController();
+  final AdvancedDrawerController _advancedDrawerController = AdvancedDrawerController();
   String title = 'Home';
   int backPressCounter = 0;
   Timer? _timer;
   int _selectedIndex = 0;
   bool isSearching = false;
   final TextEditingController _searchController = TextEditingController();
+
+   @override
+  void initState() {
+    super.initState();
+    _showWelcomeMessage();
+  }
+
+  Future<void> _showWelcomeMessage() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String nombreUsuario = prefs.getString('nombreUsuario') ?? 'Usuario';
+
+    Get.snackbar(
+      '¡Bienvenido!',
+      'Hola, $nombreUsuario. ¡Bienvenido a la aplicación!',
+      snackPosition: SnackPosition.TOP,
+      backgroundColor: Colors.cyan,
+      colorText: Colors.white,
+      duration: Duration(seconds: 3),
+    );
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -124,15 +143,15 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _getBodyContent() {
     switch (_selectedIndex) {
       case 0:
-        return SectionOne(); // Pantalla de
+        return SectionOne();
       case 1:
-        return const SectionTwo(); // Pantalla de
+        return const SectionTwo();
       case 2:
-        return const SectionThree(); // Pantalla de
+        return const SectionThree();
       case 3:
-        return const SectionFour(); // Pantalla de
+        return const SectionFour();
       default:
-        return const SectionFive(); //Pantalla por default
+        return const SectionFive();
     }
   }
 
@@ -159,7 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: Colors.green,
         );
       default:
-        return null; // Si no necesitas ningún FloatingActionButton para otras pantallas
+        return null;
     }
   }
 }
