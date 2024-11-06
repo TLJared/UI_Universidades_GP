@@ -12,14 +12,19 @@ import 'package:ui_universidades_gp/presentation/pages/login_screen.dart';
 import 'package:ui_universidades_gp/presentation/pages/welcome.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart'; // Este archivo se genera con flutterfire_cli
+<<<<<<< HEAD
+
+=======
+>>>>>>> 267132b655f83cba9d2ca20ef239a70a679b55bc
+import 'package:ui_universidades_gp/presentation/pages/configuration_screen.dart'; // Importa la pantalla de configuración
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-   final prefs = new PreferenciasUsuario();
-    await prefs.initPrefs();
+  final prefs = new PreferenciasUsuario();
+  await prefs.initPrefs();
   Get.put(ConnectivityService());
   runApp(const MyApp());
 }
@@ -32,8 +37,11 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'UI UNIVERSIDADES GP',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.light(),
-      initialRoute: '/home_screen',
+      theme: ThemeData.light(), // Tema claro
+      darkTheme: ThemeData.dark(), // Tema oscuro
+      themeMode: ThemeMode
+          .system, // Cambiar según el sistema o la elección del usuario
+      initialRoute: '/',
       getPages: [
         GetPage(
           name: '/',
@@ -67,9 +75,11 @@ class MyApp extends StatelessWidget {
             name: '/registerP',
             page: () => RegisterView(),
             transition: Transition.native),
+        GetPage(
+            name: '/configuration', // Ruta para la pantalla de configuración
+            page: () => ConfigurationScreen(),
+            transition: Transition.fadeIn),
       ],
     );
   }
 }
-
-//ppp
