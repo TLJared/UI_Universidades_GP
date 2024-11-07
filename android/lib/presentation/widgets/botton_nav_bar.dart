@@ -12,20 +12,20 @@ class BottomNavBar extends StatelessWidget {
     return BottomNavigationBar(
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.account_tree_outlined),
+          icon: Icon(Icons.school_outlined),
           label: 'Universidades',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.task),
+          icon: Icon(Icons.monetization_on_outlined),
           label: 'Costos',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.people_outlined),
-          label: 'opcion 1',
+          icon: Icon(Icons.location_on),
+          label: 'Cerca de ti',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.settings_suggest_outlined),
-          label: 'opcion 2',
+          icon: Icon(Icons.people_alt_outlined),
+          label: 'Creditos',
         ),
       ],
       currentIndex: selectedIndex,

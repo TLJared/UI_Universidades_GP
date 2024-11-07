@@ -12,10 +12,6 @@ import 'package:ui_universidades_gp/presentation/pages/login_screen.dart';
 import 'package:ui_universidades_gp/presentation/pages/welcome.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart'; // Este archivo se genera con flutterfire_cli
-<<<<<<< HEAD
-
-=======
->>>>>>> 267132b655f83cba9d2ca20ef239a70a679b55bc
 import 'package:ui_universidades_gp/presentation/pages/configuration_screen.dart'; // Importa la pantalla de configuración
 
 void main() async {
