@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ui_universidades_gp/providers/usuario_providers.dart';
 import '../../../routes/routes_controllers.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class RegisterView extends StatelessWidget {
   final UsuarioProviders usuarioController = Get.put(UsuarioProviders());
@@ -19,6 +20,15 @@ class RegisterView extends StatelessWidget {
         r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'; // Expresión regular para validar el email
     RegExp regex = RegExp(pattern);
     return regex.hasMatch(email);
+  }
+
+  // Método para lanzar la URL de términos y condiciones
+  Future<void> _launchTermsURL() async {
+    final Uri url = Uri.parse(
+        "https://cemanred.com/politicas.html"); // URL de términos y condiciones
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+      throw 'No se pudo abrir $url';
+    }
   }
 
   @override
@@ -59,7 +69,6 @@ class RegisterView extends StatelessWidget {
                     "Confirmar Contraseña", Icons.lock_outline,
                     isObscured: true),
                 SizedBox(height: 10),
-                // aqui va un checkbox y que diga aceptar terminos condiciones.
                 Obx(() => Row(
                       children: [
                         Checkbox(
@@ -77,15 +86,30 @@ class RegisterView extends StatelessWidget {
                                   title: Text('Términos y Condiciones'),
                                   content: SingleChildScrollView(
                                     child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           'Al usar UI Universidades GP, aceptas estos términos: \n\n'
-                                          '1.-Datos de Usuario: Recopilamos información personal para mejorar el servicio. Tus datos se tratan con confidencialidad.\n'
+                                          '1.- Datos de Usuario: Recopilamos información personal para mejorar el servicio. Tus datos se tratan con confidencialidad.\n'
                                           '2.- Seguridad: Tomamos medidas de protección, aunque no podemos garantizar seguridad absoluta.\n'
                                           '3.- Propiedad: El contenido de la aplicación es propiedad de UI Universidades o sus licenciantes.\n'
                                           '4.- Responsabilidad: No somos responsables de daños derivados del uso de la aplicación.\n'
-                                          '5.- Cambios: Podemos actualizar estos términos, y te notificaremos sobre ellos.',
+                                          '5.- Cambios: Podemos actualizar estos términos, y te notificaremos sobre ellos.\n\n'
+                                          'Para más información, consulta los términos y condiciones completos en nuestra página web.',
                                           textAlign: TextAlign.left,
+                                        ),
+                                        SizedBox(height: 20),
+                                        GestureDetector(
+                                          onTap: _launchTermsURL,
+                                          child: Text(
+                                            'Más información',
+                                            style: TextStyle(
+                                              color: Colors.blue,
+                                              decoration:
+                                                  TextDecoration.underline,
+                                            ),
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -93,10 +117,9 @@ class RegisterView extends StatelessWidget {
                                   actions: [
                                     TextButton(
                                       onPressed: () {
-                                        Navigator.of(context)
-                                            .pop(); // Cerrar el diálogo
+                                        Navigator.of(context).pop();
                                       },
-                                      child: Text('Atras'),
+                                      child: Text('Atrás'),
                                     ),
                                   ],
                                 );
@@ -140,49 +163,6 @@ class RegisterView extends StatelessWidget {
       ),
       obscureText: isObscured,
     );
-  }
-
-  Widget _buildCheckbox(BuildContext context) {
-    return Obx(() => Row(
-          children: [
-            Checkbox(
-              value: registerController.isChecked.value,
-              onChanged: (bool? newValue) {
-                registerController.verifyCheckbox();
-              },
-            ),
-            GestureDetector(
-              onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: Text('Términos y Condiciones'),
-                      content: SingleChildScrollView(
-                        child: Text('Aquí van los términos y condiciones...'),
-                      ),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop(); // Cerrar el diálogo
-                          },
-                          child: Text('Atrás'),
-                        ),
-                      ],
-                    );
-                  },
-                );
-              },
-              child: Text(
-                'Aceptar términos y condiciones',
-                style: TextStyle(
-                  color: Colors.blue,
-                  decoration: TextDecoration.underline,
-                ),
-              ),
-            ),
-          ],
-        ));
   }
 
   Widget _buildRegisterButton(BuildContext context) {
@@ -236,9 +216,7 @@ class RegisterView extends StatelessWidget {
 
         if (result['success']) {
           Get.snackbar('Éxito', 'Usuario registrado con éxito');
-          // Redirige a la pantalla de inicio de sesión
           Get.offAllNamed('/loginP');
-          // Limpia los campos después del registro exitoso
           nombreController.clear();
           emailController.clear();
           passwordController.clear();

@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:get/get.dart';
 import 'package:ui_universidades_gp/presentation/controllers/login_controller.dart';
 import 'package:ui_universidades_gp/presentation/pages/configuration_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MenuWidget extends StatefulWidget {
   final Function(String) onItemClick;
@@ -46,6 +47,19 @@ class _MenuWidgetState extends State<MenuWidget> {
         });
   }
 
+//funcion para obtener el nombre del usuario
+  Future<String> _ObtenerNombre() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String nombreUsuario = prefs.getString('nombreUsuario') ?? 'Usuario';
+    return nombreUsuario;
+  }
+
+//Funcion para obtener el correo del usuario
+  Future<String> _obtenerCorreoUsuario() async {
+    SharedPreferences prefsC = await SharedPreferences.getInstance();
+    return prefsC.getString('correoUsuario') ?? 'Correo no disponible';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -55,8 +69,36 @@ class _MenuWidgetState extends State<MenuWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           UserAccountsDrawerHeader(
-            accountName: const Text('nombre del usuario'),
-            accountEmail: const Text('usuario@ejemplo.com'),
+            accountName: FutureBuilder<String>(
+              future:
+                  _ObtenerNombre(), // El método que obtiene el nombre de usuario
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Text(
+                      'Cargando...'); // Puedes poner un indicador de carga
+                } else if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
+                } else if (snapshot.hasData) {
+                  return Text(snapshot.data!); // Mostrar el nombre de usuario
+                } else {
+                  return Text('Usuario'); // Valor por defecto si no hay datos
+                }
+              },
+            ),
+            accountEmail: FutureBuilder<String>(
+              future: _obtenerCorreoUsuario(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Text('Cargando correo...');
+                } else if (snapshot.hasError) {
+                  return Text('Error al cargar el correo');
+                } else if (snapshot.hasData) {
+                  return Text(snapshot.data!); // Muestra el correo obtenido
+                } else {
+                  return Text('Correo no disponible');
+                }
+              },
+            ),
             currentAccountPicture: GestureDetector(
               onTap: () {
                 _showPicker(context);
@@ -166,7 +208,7 @@ class _MenuWidgetState extends State<MenuWidget> {
             leading: const Icon(Icons.exit_to_app, color: Colors.red),
             title: const Text(
               'Cerrar Sesión',
-              style: TextStyle(color: Colors.red),
+              style: TextStyle(color: Color.fromARGB(255, 250, 249, 249)),
             ),
             onTap: loginController.logout,
           ),

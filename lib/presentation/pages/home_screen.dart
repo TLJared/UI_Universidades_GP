@@ -16,7 +16,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final AdvancedDrawerController _advancedDrawerController = AdvancedDrawerController();
+  final AdvancedDrawerController _advancedDrawerController =
+      AdvancedDrawerController();
   String title = 'Home';
   int backPressCounter = 0;
   Timer? _timer;
@@ -24,24 +25,28 @@ class _HomeScreenState extends State<HomeScreen> {
   bool isSearching = false;
   final TextEditingController _searchController = TextEditingController();
 
-   @override
+  @override
   void initState() {
     super.initState();
-    _showWelcomeMessage();
+    _showWelcomeMessage(); //mostrar el mensaje de bienvenida
   }
 
+  // Función para obtener el nombre del usuario desde SharedPreferences y mostrarlo
   Future<void> _showWelcomeMessage() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String nombreUsuario = prefs.getString('nombreUsuario') ?? 'Usuario';
 
-    Get.snackbar(
-      '¡Bienvenido!',
-      'Hola, $nombreUsuario. ¡Bienvenido a la aplicación!',
-      snackPosition: SnackPosition.TOP,
-      backgroundColor: Colors.cyan,
-      colorText: Colors.white,
-      duration: Duration(seconds: 3),
-    );
+    // Si el nombre de usuario existe, muestra el mensaje
+    if (nombreUsuario != 'Usuario') {
+      Get.snackbar(
+        '¡Bienvenido!',
+        'Hola, $nombreUsuario. ¡Bienvenido a la aplicación!',
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: Colors.cyan,
+        colorText: Colors.white,
+        duration: Duration(seconds: 5),
+      );
+    }
   }
 
   void _onItemTapped(int index) {

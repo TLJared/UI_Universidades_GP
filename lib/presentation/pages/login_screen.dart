@@ -108,6 +108,29 @@ class LoginScreen extends StatelessWidget {
                         ],
                       ),
                     ),
+                    const SizedBox(height: 10),
+                    Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          const Text('¿Se te olvidó la contraseña? '),
+                          ElevatedButton(
+                            onPressed: () {
+                              Get.toNamed(''); // pendiente
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  const Color.fromARGB(255, 29, 75, 109),
+                            ),
+                            child: const Text(
+                              'Solicitar aquí!',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 15),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
                 SizedBox(
