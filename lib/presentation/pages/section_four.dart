@@ -43,6 +43,7 @@ class SectionFour extends StatelessWidget {
             return Card(
               margin: const EdgeInsets.symmetric(vertical: 10),
               elevation: 4,
+              shadowColor: Color.fromARGB(121, 33, 58, 222),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15.0),
               ),
