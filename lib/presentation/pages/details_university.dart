@@ -42,6 +42,50 @@ class UniversityDetailView extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 10),
+            //Carta que contiene informacion de Carreras Universitiarias
+            Container(
+                child: Card(
+              margin: EdgeInsets.symmetric(vertical: 10),
+              elevation: 4,
+              shadowColor: Colors.blue,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+              child: ListTile(
+                contentPadding: EdgeInsetsDirectional.all(16.0),
+                leading: GestureDetector(
+                  onTap: () =>
+                      _showFullImage(context, item.description, item.ImageURL),
+                  child: Hero(
+                      tag: 'profile',
+                      child: CircleAvatar(
+                        radius: 30.0,
+                        backgroundImage: NetworkImage(item.ImageURL),
+                      )),
+                ),
+                title: Text(
+                  "Carreras",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                subtitle: Text(
+                  "Se dara a conocer los diferentes costos de inscripcion anual, precio por cuatrimestre, pago de  examen de admision y demas....",
+                  style: TextStyle(
+                    fontSize: 10,
+                  ),
+                ),
+                trailing: IconButton(
+                  icon: Icon(Icons.money_off_csred, color: Colors.green),
+                  onPressed: () {
+                    showEmployeeDetails(context, item);
+                  },
+                ),
+              ),
+            )),
+            //Carta que contiene la informacion de COSTOS.
+            Container(height: 8),
             Container(
                 child: Card(
               margin: EdgeInsets.symmetric(vertical: 10),
@@ -78,12 +122,11 @@ class UniversityDetailView extends StatelessWidget {
                 trailing: IconButton(
                   icon: Icon(Icons.money_off_csred, color: Colors.green),
                   onPressed: () {
-                    showEmployeeDetails(
-                        context, item.description, item.ImageURL);
+                    showEmployeeDetails(context, item);
                   },
                 ),
               ),
-            ))
+            )),
           ],
         ),
       ),
@@ -123,38 +166,55 @@ class UniversityDetailView extends StatelessWidget {
     );
   }
 
-  void showEmployeeDetails(
-      BuildContext context, String description, String ImageURL) {
+  void showEmployeeDetails(BuildContext context, ItemModel item) {
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
           title: Text(item.name),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              GestureDetector(
-                onTap: () =>
-                    _showFullImage(context, item.description, item.ImageURL),
-                child: Hero(
-                  tag: 'profileImage_',
-                  child: CircleAvatar(
-                    radius: 40,
-                    backgroundImage: NetworkImage(item.ImageURL),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                GestureDetector(
+                  onTap: () =>
+                      _showFullImage(context, item.description, item.ImageURL),
+                  child: Hero(
+                    tag: 'profileImage_${item.name}',
+                    child: CircleAvatar(
+                      radius: 40,
+                      backgroundImage: NetworkImage(item.ImageURL),
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 20),
-              Text(
-                "Algo Ramdom",
-                style: const TextStyle(fontSize: 18),
-              ),
-              const SizedBox(height: 20),
-              const Text(
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vel mauris sit amet metus placerat pharetra. Proin consequat, mauris at volutpat ultricies.',
-                textAlign: TextAlign.center,
-              ),
-            ],
+                const SizedBox(height: 20),
+                Text(
+                  "Descripción",
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                Text(item.description),
+                const SizedBox(height: 20),
+                Text(
+                  "Ingenierías",
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                ...item.ingenierias
+                    .map((ingenieria) => Text("- $ingenieria"))
+                    .toList(),
+                const SizedBox(height: 20),
+                Text(
+                  "Licenciaturas",
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                ...item.licenciaturas
+                    .map((licenciatura) => Text("- $licenciatura"))
+                    .toList(),
+              ],
+            ),
           ),
           actions: [
             TextButton(
@@ -166,4 +226,48 @@ class UniversityDetailView extends StatelessWidget {
       },
     );
   }
+
+  // void showEmployeeDetails(
+  //     BuildContext context, String description, String ImageURL) {
+  //   showDialog(
+  //     context: context,
+  //     builder: (context) {
+  //       return AlertDialog(
+  //         title: Text(item.name),
+  //         content: Column(
+  //           mainAxisSize: MainAxisSize.min,
+  //           children: [
+  //             GestureDetector(
+  //               onTap: () =>
+  //                   _showFullImage(context, item.description, item.ImageURL),
+  //               child: Hero(
+  //                 tag: 'profileImage_',
+  //                 child: CircleAvatar(
+  //                   radius: 40,
+  //                   backgroundImage: NetworkImage(item.ImageURL),
+  //                 ),
+  //               ),
+  //             ),
+  //             const SizedBox(height: 20),
+  //             Text(
+  //               "Algo Ramdom",
+  //               style: const TextStyle(fontSize: 18),
+  //             ),
+  //             const SizedBox(height: 20),
+  //             const Text(
+  //               'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vel mauris sit amet metus placerat pharetra. Proin consequat, mauris at volutpat ultricies.',
+  //               textAlign: TextAlign.center,
+  //             ),
+  //           ],
+  //         ),
+  //         actions: [
+  //           TextButton(
+  //             onPressed: () => Navigator.of(context).pop(),
+  //             child: const Text('Cerrar'),
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
 }
