@@ -18,7 +18,7 @@ class ItemsUniController extends GetxController {
               'https://virtual.utpuebla.edu.mx/pluginfile.php/1/theme_academi/logo/1672678911/logoUTP.png',
           name: 'Universidad Tecnologica de Puebla',
           description:
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+              'La Universidad Tecnológica de Puebla (UTP) es una institución de educación superior pública ubicada en Puebla, México, reconocida por su modelo educativo basado en competencias y vinculación con el sector productivo. Fundada con el objetivo de formar profesionales altamente capacitados, la UTP ofrece programas académicos en áreas tecnológicas, de ingeniería y licenciaturas, destacando por su enfoque en la innovación y la empleabilidad. Con modernas instalaciones, programas de formación dual y una sólida relación con empresas, la universidad promueve el desarrollo integral de sus estudiantes, preparándolos para enfrentar los retos del mercado laboral actual.',
           Precio: 2500,
           ingenierias: [
             "Ingeniería en desarrollo de software multiplataforma",
@@ -70,7 +70,7 @@ class ItemsUniController extends GetxController {
               'https://logos-world.net/wp-content/uploads/2022/06/BUAP-Symbol.png',
           name: 'BUAP',
           description:
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+              'La Benemérita Universidad Autónoma de Puebla (BUAP) es una institución pública de educación superior con una rica historia que se remonta a 1587, lo que la convierte en una de las universidades más antiguas y prestigiosas de México. Ubicada en el estado de Puebla, la BUAP es reconocida por su excelencia académica, diversidad de programas educativos y compromiso con la formación integral de sus estudiantes. Con una oferta que abarca licenciaturas, posgrados, carreras técnicas y cursos de idiomas, la universidad también destaca por sus instalaciones modernas, como la Ciudad Universitaria y el Complejo Cultural Universitario. Además, su enfoque en la investigación, la innovación y el impacto social la posiciona como un referente educativo tanto a nivel nacional como internacional.',
           Precio: 3500,
           ingenierias: [
             "Ingeniería en desarrollo de software multiplataforma",
@@ -128,7 +128,7 @@ class ItemsUniController extends GetxController {
               'https://th.bing.com/th/id/R.8aa1e5a8712571bd2f07048f12f31f04?rik=KCqOVSoF4NEwhg&riu=http%3a%2f%2fwww.uppuebla.edu.mx%2fwp-content%2fuploads%2f2022%2f08%2fLOGO-UPP-HD-1001x1024.png&ehk=5I22deQ3vA8P7Zg%2fHkVThb80W1Par%2bohSSzNYZbZhms%3d&risl=&pid=ImgRaw&r=0',
           name: 'Instituto Politecnico de Puebla',
           description:
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+              'La **Universidad Politécnica de Puebla (UPP) es una institución pública de educación superior ubicada en Puebla, México, reconocida por su enfoque en la enseñanza tecnológica y la innovación. Desde su creación en 2004, la UPP ha destacado por ofrecer programas académicos en áreas estratégicas como ingeniería, tecnologías de la información y ciencias aplicadas, alineados con las demandas del sector productivo. Con un modelo educativo basado en competencias, modernas instalaciones y vinculación empresarial, la UPP prepara a sus estudiantes para ser líderes en el ámbito profesional, promoviendo el desarrollo tecnológico y económico tanto a nivel regional como nacional.',
           Precio: 4000,
           ingenierias: [
             "Ingeniería en desarrollo de software multiplataforma",
@@ -181,7 +181,7 @@ class ItemsUniController extends GetxController {
               'https://s3.amazonaws.com/s3.timetoast.com/public/uploads/photos/12211896/itp.png',
           name: 'Instituto Tecnologico de Puebla',
           description:
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+              'El Instituto Tecnológico de Puebla (ITP) es una destacada institución de educación superior pública ubicada en Puebla, México, que forma parte del Tecnológico Nacional de México. Desde su fundación en 1972, el ITP se ha enfocado en ofrecer programas académicos de excelencia en ingeniería, tecnología y ciencias aplicadas, fomentando la innovación y el desarrollo profesional. Con modernas instalaciones, laboratorios especializados y una sólida tradición educativa, el ITP prepara a sus estudiantes para contribuir al progreso industrial y tecnológico del país, destacándose como un pilar en la formación de talento altamente calificado.',
           Precio: 3200,
           ingenierias: [
             "Ingeniería en desarrollo de software multiplataforma",

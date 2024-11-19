@@ -10,7 +10,12 @@ class UniversityDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Detalles de: " + item.name),
+        centerTitle: true,
+        title: Text(
+          "Detalles de: " + item.name,
+          style: TextStyle(
+              fontSize: 13, fontFamily: AutofillHints.transactionCurrency),
+        ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -85,7 +90,7 @@ class UniversityDetailView extends StatelessWidget {
               ),
             )),
             //Carta que contiene la informacion de COSTOS.
-            Container(height: 8),
+            SizedBox(height: 8),
             Container(
                 child: Card(
               margin: EdgeInsets.symmetric(vertical: 10),
@@ -127,6 +132,179 @@ class UniversityDetailView extends StatelessWidget {
                 ),
               ),
             )),
+            ////////////////-----AREA DE BECAS DE UNIVERSIDAD///////////////////////////
+            SizedBox(height: 8),
+            Container(
+                child: Card(
+              margin: EdgeInsets.symmetric(vertical: 10),
+              elevation: 4,
+              shadowColor: Colors.blue,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+              child: ListTile(
+                contentPadding: EdgeInsetsDirectional.all(16.0),
+                leading: GestureDetector(
+                  onTap: () =>
+                      _showFullImage(context, item.description, item.ImageURL),
+                  child: Hero(
+                      tag: 'profile',
+                      child: CircleAvatar(
+                        radius: 30.0,
+                        backgroundImage: NetworkImage(item.ImageURL),
+                      )),
+                ),
+                title: Text(
+                  "BECAS",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                subtitle: Text(
+                  "Se dara a conocer los diferentes tipos de becas que la universidad otorga a sus estudiantes.",
+                  style: TextStyle(
+                    fontSize: 10,
+                  ),
+                ),
+                trailing: IconButton(
+                  icon: Icon(Icons.money_off_csred, color: Colors.green),
+                  onPressed: () {
+                    showEmployeeDetails(context, item);
+                  },
+                ),
+              ),
+            )),
+            ////////////////----DEPORTES CULTURALES ////////////////////////////////
+            SizedBox(height: 8),
+            Container(
+                child: Card(
+              margin: EdgeInsets.symmetric(vertical: 10),
+              elevation: 4,
+              shadowColor: Colors.blue,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+              child: ListTile(
+                contentPadding: EdgeInsetsDirectional.all(16.0),
+                leading: GestureDetector(
+                  onTap: () =>
+                      _showFullImage(context, item.description, item.ImageURL),
+                  child: Hero(
+                      tag: 'profile',
+                      child: CircleAvatar(
+                        radius: 30.0,
+                        backgroundImage: NetworkImage(item.ImageURL),
+                      )),
+                ),
+                title: Text(
+                  "DEPORTES CULTURES Y ACTIVIDADES EXTRACURRICULARES",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                subtitle: Text(
+                  "Se dara a conocer las diferetes actividades y deportes que la universidad otorga a sus alumnos.",
+                  style: TextStyle(
+                    fontSize: 10,
+                  ),
+                ),
+                trailing: IconButton(
+                  icon: Icon(Icons.money_off_csred, color: Colors.green),
+                  onPressed: () {
+                    showEmployeeDetails(context, item);
+                  },
+                ),
+              ),
+            )),
+            ////////////--Áreas de Apoyo Estudiantil--///////////////
+            SizedBox(height: 8),
+            Container(
+                child: Card(
+              margin: EdgeInsets.symmetric(vertical: 10),
+              elevation: 4,
+              shadowColor: Colors.blue,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+              child: ListTile(
+                contentPadding: EdgeInsetsDirectional.all(16.0),
+                leading: GestureDetector(
+                  onTap: () =>
+                      _showFullImage(context, item.description, item.ImageURL),
+                  child: Hero(
+                      tag: 'profile',
+                      child: CircleAvatar(
+                        radius: 30.0,
+                        backgroundImage: NetworkImage(item.ImageURL),
+                      )),
+                ),
+                title: Text(
+                  "Áreas de Apoyo Estudiantil",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                subtitle: Text(
+                  "Se dara a conocer los diferentes departamentos de apoyo y seguimiento para el estudiante.",
+                  style: TextStyle(
+                    fontSize: 10,
+                  ),
+                ),
+                trailing: IconButton(
+                  icon: Icon(Icons.money_off_csred, color: Colors.green),
+                  onPressed: () {
+                    showEmployeeDetails(context, item);
+                  },
+                ),
+              ),
+            )),
+            ///////////////////--CONTACTOS----------------////////////////////////////////////////
+            SizedBox(height: 8),
+            Container(
+                child: Card(
+              margin: EdgeInsets.symmetric(vertical: 10),
+              elevation: 4,
+              shadowColor: Colors.blue,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+              child: ListTile(
+                contentPadding: EdgeInsetsDirectional.all(16.0),
+                leading: GestureDetector(
+                  onTap: () =>
+                      _showFullImage(context, item.description, item.ImageURL),
+                  child: Hero(
+                      tag: 'profile',
+                      child: CircleAvatar(
+                        radius: 30.0,
+                        backgroundImage: NetworkImage(item.ImageURL),
+                      )),
+                ),
+                title: Text(
+                  "COSTOS",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                subtitle: Text(
+                  "Se dara a conocer los diferentes costos de inscripcion anual, precio por cuatrimestre, pago de  examen de admision y demas....",
+                  style: TextStyle(
+                    fontSize: 10,
+                  ),
+                ),
+                trailing: IconButton(
+                  icon: Icon(Icons.money_off_csred, color: Colors.green),
+                  onPressed: () {
+                    showEmployeeDetails(context, item);
+                  },
+                ),
+              ),
+            )),
+            ///////////////////////////////
           ],
         ),
       ),
@@ -226,48 +404,4 @@ class UniversityDetailView extends StatelessWidget {
       },
     );
   }
-
-  // void showEmployeeDetails(
-  //     BuildContext context, String description, String ImageURL) {
-  //   showDialog(
-  //     context: context,
-  //     builder: (context) {
-  //       return AlertDialog(
-  //         title: Text(item.name),
-  //         content: Column(
-  //           mainAxisSize: MainAxisSize.min,
-  //           children: [
-  //             GestureDetector(
-  //               onTap: () =>
-  //                   _showFullImage(context, item.description, item.ImageURL),
-  //               child: Hero(
-  //                 tag: 'profileImage_',
-  //                 child: CircleAvatar(
-  //                   radius: 40,
-  //                   backgroundImage: NetworkImage(item.ImageURL),
-  //                 ),
-  //               ),
-  //             ),
-  //             const SizedBox(height: 20),
-  //             Text(
-  //               "Algo Ramdom",
-  //               style: const TextStyle(fontSize: 18),
-  //             ),
-  //             const SizedBox(height: 20),
-  //             const Text(
-  //               'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vel mauris sit amet metus placerat pharetra. Proin consequat, mauris at volutpat ultricies.',
-  //               textAlign: TextAlign.center,
-  //             ),
-  //           ],
-  //         ),
-  //         actions: [
-  //           TextButton(
-  //             onPressed: () => Navigator.of(context).pop(),
-  //             child: const Text('Cerrar'),
-  //           ),
-  //         ],
-  //       );
-  //     },
-  //   );
-  // }
 }
