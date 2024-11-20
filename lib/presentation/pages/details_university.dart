@@ -52,7 +52,7 @@ class UniversityDetailView extends StatelessWidget {
                 child: Card(
               margin: EdgeInsets.symmetric(vertical: 10),
               elevation: 4,
-              shadowColor: Colors.blue,
+              shadowColor: const Color.fromARGB(255, 17, 128, 219),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15.0),
               ),
@@ -82,7 +82,8 @@ class UniversityDetailView extends StatelessWidget {
                   ),
                 ),
                 trailing: IconButton(
-                  icon: Icon(Icons.money_off_csred, color: Colors.green),
+                  icon: Icon(Icons.school,
+                      color: Color.fromARGB(255, 255, 242, 0)),
                   onPressed: () {
                     showEmployeeDetails(context, item);
                   },
@@ -95,7 +96,7 @@ class UniversityDetailView extends StatelessWidget {
                 child: Card(
               margin: EdgeInsets.symmetric(vertical: 10),
               elevation: 4,
-              shadowColor: Colors.blue,
+              shadowColor: const Color.fromARGB(255, 17, 128, 219),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15.0),
               ),
@@ -138,7 +139,7 @@ class UniversityDetailView extends StatelessWidget {
                 child: Card(
               margin: EdgeInsets.symmetric(vertical: 10),
               elevation: 4,
-              shadowColor: Colors.blue,
+              shadowColor: const Color.fromARGB(255, 17, 128, 219),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15.0),
               ),
@@ -168,7 +169,8 @@ class UniversityDetailView extends StatelessWidget {
                   ),
                 ),
                 trailing: IconButton(
-                  icon: Icon(Icons.money_off_csred, color: Colors.green),
+                  icon: Image.asset('assets/scholarship.png',
+                      color: Colors.green),
                   onPressed: () {
                     becasUniversity(context, item);
                   },
@@ -181,7 +183,7 @@ class UniversityDetailView extends StatelessWidget {
                 child: Card(
               margin: EdgeInsets.symmetric(vertical: 10),
               elevation: 4,
-              shadowColor: Colors.blue,
+              shadowColor: const Color.fromARGB(255, 17, 128, 219),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15.0),
               ),
@@ -211,7 +213,10 @@ class UniversityDetailView extends StatelessWidget {
                   ),
                 ),
                 trailing: IconButton(
-                  icon: Icon(Icons.money_off_csred, color: Colors.green),
+                  icon: Image.asset(
+                    "assets/winner.png",
+                    color: Colors.yellow,
+                  ),
                   onPressed: () {
                     deportesUniversity(context, item);
                   },
@@ -224,7 +229,7 @@ class UniversityDetailView extends StatelessWidget {
                 child: Card(
               margin: EdgeInsets.symmetric(vertical: 10),
               elevation: 4,
-              shadowColor: Colors.blue,
+              shadowColor: const Color.fromARGB(255, 17, 128, 219),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15.0),
               ),
@@ -254,7 +259,7 @@ class UniversityDetailView extends StatelessWidget {
                   ),
                 ),
                 trailing: IconButton(
-                  icon: Icon(Icons.money_off_csred, color: Colors.green),
+                  icon: Image.asset("assets/university.png"),
                   onPressed: () {
                     apoyoSectionsStudentsUniversity(context, item);
                   },
@@ -267,7 +272,7 @@ class UniversityDetailView extends StatelessWidget {
                 child: Card(
               margin: EdgeInsets.symmetric(vertical: 10),
               elevation: 4,
-              shadowColor: Colors.blue,
+              shadowColor: const Color.fromARGB(255, 17, 128, 219),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15.0),
               ),
@@ -297,7 +302,7 @@ class UniversityDetailView extends StatelessWidget {
                   ),
                 ),
                 trailing: IconButton(
-                  icon: Icon(Icons.money_off_csred, color: Colors.green),
+                  icon: Image.asset("assets/contactanos.png"),
                   onPressed: () {
                     contactosUniversity(context, item);
                   },
@@ -373,7 +378,7 @@ class UniversityDetailView extends StatelessWidget {
                   style: const TextStyle(
                       fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-                Text(item.description),
+                Text(item.descriptionInge, style: TextStyle(fontSize: 10)),
                 const SizedBox(height: 20),
                 Text(
                   "Ingenierías",
@@ -435,7 +440,7 @@ class UniversityDetailView extends StatelessWidget {
                   style: const TextStyle(
                       fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-                Text(item.descrpcionPrecio),
+                Text(item.descrpcionPrecio, style: TextStyle(fontSize: 10)),
                 const SizedBox(height: 20),
                 Text(
                   "Costos generales",
@@ -495,7 +500,7 @@ class UniversityDetailView extends StatelessWidget {
                   style: const TextStyle(
                       fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-                Text(item.description),
+                Text(item.descripBecas, style: TextStyle(fontSize: 10)),
                 const SizedBox(height: 20),
                 Text(
                   "Becas otorgadas por universidad:",
@@ -555,7 +560,8 @@ class UniversityDetailView extends StatelessWidget {
                   style: const TextStyle(
                       fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-                Text(item.description),
+                Text(item.descripActiCulturales,
+                    style: TextStyle(fontSize: 10)),
                 const SizedBox(height: 20),
                 Text(
                   "Actividades que otorga la universidad",
@@ -617,7 +623,8 @@ class UniversityDetailView extends StatelessWidget {
                   style: const TextStyle(
                       fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-                Text(item.description),
+                Text(item.descripDepartHelpStudents,
+                    style: TextStyle(fontSize: 10)),
                 const SizedBox(height: 20),
                 Text(
                   "Departamentos: ",
@@ -679,25 +686,28 @@ class UniversityDetailView extends StatelessWidget {
                   style: const TextStyle(
                       fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-                Text(item.description),
+                Text(
+                  item.descripContactos,
+                  style: TextStyle(fontSize: 10),
+                ),
                 const SizedBox(height: 20),
                 Text(
-                  "",
+                  "Contactos",
                   style: const TextStyle(
                       fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-                ...item.ingenierias
-                    .map((ingenieria) => Text("- $ingenieria"))
+                ...item.contactos
+                    .map((contacto) => Text("- $contacto"))
                     .toList(),
                 const SizedBox(height: 20),
-                Text(
-                  "Licenciaturas",
-                  style: const TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                ...item.licenciaturas
-                    .map((licenciatura) => Text("- $licenciatura"))
-                    .toList(),
+                // Text(
+                //   "Licenciaturas",
+                //   style: const TextStyle(
+                //       fontSize: 18, fontWeight: FontWeight.bold),
+                // ),
+                // ...item.licenciaturas
+                //     .map((licenciatura) => Text("- $licenciatura"))
+                //     .toList(),
               ],
             ),
           ),
