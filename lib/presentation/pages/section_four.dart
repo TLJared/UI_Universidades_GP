@@ -7,27 +7,27 @@ class SectionFour extends StatelessWidget {
     {
       'name': 'Jared Tlahuetl',
       'position': 'Desarrollador Senior',
-      'image': '',
+      'image': 'https://ui-avatars.com/api/?name=Jared+Tlahuetl',
     },
     {
       'name': 'Miguel Angel Potrero',
       'position': 'Analista de Datos',
-      'image': '',
+      'image': 'https://ui-avatars.com/api/?name=Miguel+Angel',
     },
     {
       'name': 'Jose Ivan Rivera',
       'position': 'Diseñador UX/UI',
-      'image': '',
+      'image': 'https://ui-avatars.com/api/?name=Jose+Ivan',
     },
     {
       'name': 'Christian Uriel',
       'position': 'Gerente de Proyectos',
-      'image': '',
+      'image': 'https://ui-avatars.com/api/?name=Christian+Uriel',
     },
     {
-      'name': 'Ismael',
+      'name': 'Ismael Calvario',
       'position': 'Ingeniero de Software',
-      'image': '',
+      'image': 'https://ui-avatars.com/api/?name=Ismael+Calvario',
     },
   ];
 
