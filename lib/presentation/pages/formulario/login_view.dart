@@ -89,14 +89,12 @@ class LoginView extends StatelessWidget {
 
                     if (result['success']) {
                       String nombreUsuario = result['nombre'] ?? 'Usuario';
-                      String correoUsuario = result['email'] ?? 'Correo';
+                      //String correoUsuario = result['email'] ?? 'Correo';
 
                       // Navega a la pantalla principal y pasa el nombre del usuario
-                      Get.offNamed('/home_screen',
-                          arguments: {'nombre': nombreUsuario});
-                      // Navega a la pantalla principal y pasa el correo del usuario
-                      Get.offNamed('/home_screen',
-                          arguments: {'email': correoUsuario});
+                      Get.offNamed('/home_screen', arguments: {
+                        'nombre': nombreUsuario,
+                      });
                     } else {
                       // Muestra el mensaje de error devuelto
                       Get.snackbar('Error', "Las credenciales son incorrectas",

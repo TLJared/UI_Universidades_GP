@@ -45,7 +45,7 @@ class RegisterController extends GetxController {
   }
 
   Future<void> _guardarCorreoUsuario(String correo) async {
-    SharedPreferences prefsC = await SharedPreferences.getInstance();
-    await prefsC.setString('correoUsuario', correo);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('correoUsuario', correo);
   }
 }
