@@ -1,4 +1,3 @@
-// Importacion de librerias
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:get/get.dart';
@@ -16,7 +15,6 @@ class MenuWidget extends StatefulWidget {
 }
 
 class _MenuWidgetState extends State<MenuWidget> {
-  // Futuro Controlador para verificar la sesion si se encuentra activa o no.
   final LoginController loginController = Get.put(LoginController());
   File? _image;
 
@@ -47,17 +45,17 @@ class _MenuWidgetState extends State<MenuWidget> {
         });
   }
 
-//funcion para obtener el nombre del usuario
+  // Función para obtener el nombre del usuario
   Future<String> _ObtenerNombre() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String nombreUsuario = prefs.getString('nombreUsuario') ?? 'Usuario';
     return nombreUsuario;
   }
 
-//Funcion para obtener el correo del usuario
+  // Función para obtener el correo del usuario
   Future<String> _obtenerCorreoUsuario() async {
-    SharedPreferences prefsC = await SharedPreferences.getInstance();
-    return prefsC.getString('correoUsuario') ?? 'Correo no disponible';
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('correoUsuario') ?? 'Correo no disponible';
   }
 
   @override
@@ -74,8 +72,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                   _ObtenerNombre(), // El método que obtiene el nombre de usuario
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Text(
-                      'Cargando...'); // Puedes poner un indicador de carga
+                  return Text('Cargando...');
                 } else if (snapshot.hasError) {
                   return Text('Error: ${snapshot.error}');
                 } else if (snapshot.hasData) {
@@ -189,7 +186,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                             ],
                           ),
                         ),
-                        // Resto de la simbología...
+                        // Otros elementos de simbología...
                       ],
                     ),
                     actions: <Widget>[

@@ -25,18 +25,26 @@ class _HomeScreenState extends State<HomeScreen> {
   bool isSearching = false;
   final TextEditingController _searchController = TextEditingController();
 
+  String nombreUsuario = '';
+  String correoUsuario = '';
+
   @override
   void initState() {
     super.initState();
-    _showWelcomeMessage(); //mostrar el mensaje de bienvenida
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _loadUserData(); // Carga los datos del usuario desde SharedPreferences
+    });
   }
 
-  // Función para obtener el nombre del usuario desde SharedPreferences y mostrarlo
-  Future<void> _showWelcomeMessage() async {
+  // Función para cargar los datos del usuario desde SharedPreferences
+  Future<void> _loadUserData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String nombreUsuario = prefs.getString('nombreUsuario') ?? 'Usuario';
+    String nombre = prefs.getString('nombreUsuario') ?? 'Usuario';
+    setState(() {
+      nombreUsuario = nombre;
+    });
 
-    // Si el nombre de usuario existe, muestra el mensaje
+    // Muestra el mensaje de bienvenida si el nombre no es "Usuario"
     if (nombreUsuario != 'Usuario') {
       Get.snackbar(
         '¡Bienvenido!',

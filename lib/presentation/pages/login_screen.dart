@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../routes/routes_controllers.dart';
+import '../controllers/login_controller.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -8,6 +9,10 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final LoginController controller = Get.put(LoginController());
+
+    // Controladores para los campos de texto
+    final TextEditingController nombreController = TextEditingController();
+    final TextEditingController correoController = TextEditingController();
 
     return Scaffold(
       resizeToAvoidBottomInset:
@@ -33,139 +38,64 @@ class LoginScreen extends StatelessWidget {
                 ),
                 Column(
                   children: <Widget>[
+                    // Campo de texto para nombre
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15),
-                      child: Obx(
-                        () => TextField(
-                          decoration: InputDecoration(
-                            border: const OutlineInputBorder(),
-                            labelText: 'Ingresa tu correo/usuario',
-                            hintText: 'example@live.com',
-                            errorText: controller.emailError.value.isEmpty
-                                ? null
-                                : controller.emailError.value,
-                          ),
-                          onChanged: (value) {
-                            controller.email.value = value;
-                            controller.emailError.value =
-                                ''; // Clear error on input change
-                          },
+                      child: TextField(
+                        controller: nombreController,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Ingresa tu nombre',
+                          hintText: 'Ejemplo: Juan Pérez',
                         ),
                       ),
                     ),
+                    const SizedBox(height: 20),
+                    // Campo de texto para correo
                     Padding(
-                      padding: const EdgeInsets.only(
-                        left: 15.0,
-                        right: 15.0,
-                        top: 45.0,
-                        bottom: 0,
-                      ),
-                      child: Obx(
-                        () => TextField(
-                          obscureText: controller.isPasswordHidden.value,
-                          decoration: InputDecoration(
-                              border: const OutlineInputBorder(),
-                              labelText: 'Ingresa tu contraseña',
-                              hintText: '***********',
-                              errorText: controller.passwordError.value.isEmpty
-                                  ? null
-                                  : controller.passwordError.value,
-                              suffixIcon: IconButton(
-                                  onPressed: () {
-                                    controller.togglePasswordVisibility();
-                                  },
-                                  icon: Icon(controller.isPasswordHidden.value
-                                      ? Icons.visibility_off
-                                      : Icons.visibility))),
-                          onChanged: (value) {
-                            controller.password.value = value;
-                            controller.passwordError.value =
-                                ''; // Clear error on input change
-                          },
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: TextField(
+                        controller: correoController,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Ingresa tu correo',
+                          hintText: 'example@live.com',
                         ),
                       ),
                     ),
-                    const SizedBox(height: 10),
-                    Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          const Text('¿Se te olvidó la contraseña? '),
-                          ElevatedButton(
-                            onPressed: () {
-                              Get.toNamed(''); // pendiente
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  const Color.fromARGB(255, 29, 75, 109),
-                            ),
-                            child: const Text(
-                              'Solicitar aquí!',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 15),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          const Text('¿Se te olvidó la contraseña? '),
-                          ElevatedButton(
-                            onPressed: () {
-                              Get.toNamed(''); // pendiente
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  const Color.fromARGB(255, 29, 75, 109),
-                            ),
-                            child: const Text(
-                              'Solicitar aquí!',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 15),
-                            ),
-                          ),
-                        ],
+                    const SizedBox(height: 20),
+                    // Botón para iniciar sesión
+                    SizedBox(
+                      height: 65,
+                      width: 360,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          final nombre = nombreController.text.trim();
+                          final correo = correoController.text.trim();
+
+                          if (nombre.isEmpty || correo.isEmpty) {
+                            Get.snackbar(
+                              'Error',
+                              'Por favor, completa todos los campos',
+                              snackPosition: SnackPosition.BOTTOM,
+                            );
+                          } else {
+                            controller.login(nombre, correo);
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              const Color.fromARGB(255, 29, 75, 109),
+                        ),
+                        child: const Text(
+                          'Ingresar',
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 65,
-                  width: 360,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 20.0),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        controller.login();
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(255, 29, 75, 109),
-                      ),
-                      child: const Text(
-                        'Ingresar',
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ),
-                    ),
-                  ),
-                ),
               ],
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 20.0),
-              // child: Text(
-              //   '',
-              //   style: TextStyle(
-              //     color: Colors.grey[600],
-              //     fontSize: 14,
-              //   ),
-              // ),
             ),
           ),
         ],

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:ui_universidades_gp/providers/usuario_providers.dart';
 import '../../../routes/routes_controllers.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterView extends StatelessWidget {
   final UsuarioProviders usuarioController = Get.put(UsuarioProviders());
@@ -29,6 +30,13 @@ class RegisterView extends StatelessWidget {
     if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
       throw 'No se pudo abrir $url';
     }
+  }
+
+  Future<void> handleLoginSuccess(
+      String nombreUsuario, String correoUsuario) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('nombreUsuario', nombreUsuario);
+    await prefs.setString('correoUsuario', correoUsuario);
   }
 
   @override
@@ -215,8 +223,15 @@ class RegisterView extends StatelessWidget {
         );
 
         if (result['success']) {
+          // Guardar el nombre de usuario y correo en SharedPreferences
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          await prefs.setString('nombreUsuario', nombreController.text);
+          await prefs.setString('correoUsuario', emailController.text);
+
           Get.snackbar('Éxito', 'Usuario registrado con éxito');
-          Get.offAllNamed('/loginP');
+          Get.offAllNamed('/loginP'); // Redirige al login
+
+          // Limpiar campos
           nombreController.clear();
           emailController.clear();
           passwordController.clear();
