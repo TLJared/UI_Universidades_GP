@@ -160,7 +160,7 @@ class _HomeScreenState extends State<HomeScreen> {
       case 1:
         return const SectionTwo();
       case 2:
-        return const SectionThree();
+        return UbicacionView();
       case 3:
         return const SectionFour();
       default:
