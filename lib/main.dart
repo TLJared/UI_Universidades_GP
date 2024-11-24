@@ -11,6 +11,7 @@ import 'package:ui_universidades_gp/presentation/pages/home_screen.dart';
 import 'package:ui_universidades_gp/presentation/pages/login_screen.dart';
 import 'package:ui_universidades_gp/presentation/pages/welcome.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:ui_universidades_gp/routes/routes_pages.dart';
 import 'firebase_options.dart'; // Este archivo se genera con flutterfire_cli
 import 'package:ui_universidades_gp/presentation/pages/configuration_screen.dart'; // Importa la pantalla de configuración
 
@@ -75,6 +76,10 @@ class MyApp extends StatelessWidget {
             name: '/configuration', // Ruta para la pantalla de configuración
             page: () => ConfigurationScreen(),
             transition: Transition.fadeIn),
+        GetPage(
+            name: '/ResetP',
+            page: () => ResetPasswordView(),
+            transition: Transition.topLevel),
       ],
     );
   }

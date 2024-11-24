@@ -132,7 +132,7 @@ class LoginView extends StatelessWidget {
                 SizedBox(height: 10),
                 TextButton(
                   onPressed: () {
-                    Get.toNamed('/');
+                    Get.toNamed('/ResetP');
                   },
                   child: Text(
                     "¿Se te olvido la contraseña?",
