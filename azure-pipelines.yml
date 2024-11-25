@@ -10,10 +10,12 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
+- script: echo Este es un comentario de prueba desde PIPELINE!
   displayName: 'Run a one-line script'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: GitHubComment@0
+  inputs:
+    gitHubConnection: 'CHRISTIAN-URIEL'
+    repositoryName: 'TLJared/UI_Universidades_GP'
+    id: '001'
+    comment: 'comentario de prueba para piepline'
