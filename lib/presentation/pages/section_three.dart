@@ -87,9 +87,6 @@ class UbicacionView extends StatelessWidget {
     final controller = Get.put(UbicacionController());
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Mi Ubicación Actual'),
-      ),
       body: Obx(() {
         if (controller.isLoading) {
           return Center(
