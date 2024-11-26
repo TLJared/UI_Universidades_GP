@@ -1,25 +1,25 @@
 import 'package:get/get.dart';
-import 'package:ui_universidades_gp/datosApp/services/usuario_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ui_universidades_gp/providers/usuario_providers.dart';
 
 class UsuarioController extends GetxController {
-  final UsuarioService usuarioService = UsuarioService();
+  final UsuarioProviders usuarioProviders = UsuarioProviders();
 
-  Future<String?> registrarUsuario(
-      String nombre, String email, String password) async {
+  Future<Map<String, dynamic>> login(String email, String password) async {
     try {
-      await usuarioService.registrarUsuario(nombre, email, password);
-      return null; // Registro exitoso
+      final result = await usuarioProviders.login(email, password);
+      if (result['success']) {
+        // Guardar el token en SharedPreferences
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setString('token', result['token']);
+        return {'success': true};
+      } else {
+        // Retorna el mensaje de error en caso de fallo
+        return {'success': false, 'error': result['error']};
+      }
     } catch (e) {
-      return e.toString(); // Devuelve el mensaje de error
-    }
-  }
-
-  Future<String?> login(String email, String password) async {
-    try {
-      return await usuarioService.login(
-          email, password); // Retorna el mensaje de error si falla
-    } catch (e) {
-      return 'Error al intentar iniciar sesión'; // Mensaje genérico si hay un error
+      // Manejo de errores generales
+      return {'success': false, 'error': 'Error al intentar iniciar sesión'};
     }
   }
 }

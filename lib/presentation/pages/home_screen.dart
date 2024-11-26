@@ -1,16 +1,16 @@
-//Importacion de librerias
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 //routes
 import '../../routes/routes_pages.dart';
 import '../../routes/routes_widgets.dart';
 
-//Inicio de la clase
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -24,6 +24,38 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   bool isSearching = false;
   final TextEditingController _searchController = TextEditingController();
+
+  String nombreUsuario = '';
+  String correoUsuario = '';
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _loadUserData(); // Carga los datos del usuario desde SharedPreferences
+    });
+  }
+
+  // Función para cargar los datos del usuario desde SharedPreferences
+  Future<void> _loadUserData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String nombre = prefs.getString('nombreUsuario') ?? 'Usuario';
+    setState(() {
+      nombreUsuario = nombre;
+    });
+
+    // Muestra el mensaje de bienvenida si el nombre no es "Usuario"
+    if (nombreUsuario != 'Usuario') {
+      Get.snackbar(
+        '¡Bienvenido!',
+        'Hola, $nombreUsuario. ¡Bienvenido a la aplicación!',
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: Colors.cyan,
+        colorText: Colors.white,
+        duration: Duration(seconds: 5),
+      );
+    }
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -124,15 +156,15 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _getBodyContent() {
     switch (_selectedIndex) {
       case 0:
-        return const SectionOne(); // Pantalla de
+        return SectionOne();
       case 1:
-        return const SectionTwo(); // Pantalla de
+        return const SectionTwo();
       case 2:
-        return const SectionThree(); // Pantalla de
+        return UbicacionView();
       case 3:
-        return const SectionFour(); // Pantalla de
+        return const SectionFour();
       default:
-        return const SectionFive(); //Pantalla por default
+        return const SectionFive();
     }
   }
 
@@ -159,7 +191,7 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: Colors.green,
         );
       default:
-        return null; // Si no necesitas ningún FloatingActionButton para otras pantallas
+        return null;
     }
   }
 }

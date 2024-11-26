@@ -124,7 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _getBodyContent() {
     switch (_selectedIndex) {
       case 0:
-        return const SectionOne(); // Pantalla de
+        return  SectionOne(); // Pantalla de
       case 1:
         return const SectionTwo(); // Pantalla de
       case 2:

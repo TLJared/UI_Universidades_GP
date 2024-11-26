@@ -132,17 +132,10 @@ class LoginScreen extends StatelessWidget {
               ],
             ),
           ),
-          Align(
+          const Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 20.0),
-              // child: Text(
-              //   '',
-              //   style: TextStyle(
-              //     color: Colors.grey[600],
-              //     fontSize: 14,
-              //   ),
-              // ),
+              padding: EdgeInsets.only(bottom: 20.0),
             ),
           ),
         ],

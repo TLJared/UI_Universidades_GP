@@ -1,11 +1,9 @@
-//Importacion de librerias
 import 'package:flutter/material.dart';
-//import 'package:image_picker/image_picker.dart';
 import 'dart:io';
-
 import 'package:get/get.dart';
 import 'package:ui_universidades_gp/presentation/controllers/login_controller.dart';
-//import '../../routes/routes_pages.dart';
+import 'package:ui_universidades_gp/presentation/pages/configuration_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MenuWidget extends StatefulWidget {
   final Function(String) onItemClick;
@@ -17,9 +15,7 @@ class MenuWidget extends StatefulWidget {
 }
 
 class _MenuWidgetState extends State<MenuWidget> {
-  // Futuro Controlador para verificar la sesion si se encuentra activa o no.
   final LoginController loginController = Get.put(LoginController());
-  //final ImagePicker _picker = ImagePicker();
   File? _image;
 
   Future<void> _showPicker(BuildContext context) async {
@@ -33,7 +29,6 @@ class _MenuWidgetState extends State<MenuWidget> {
                   leading: const Icon(Icons.photo_library),
                   title: const Text('Galería'),
                   onTap: () {
-                    //_imgFromGallery();
                     Navigator.of(context).pop();
                   },
                 ),
@@ -41,7 +36,6 @@ class _MenuWidgetState extends State<MenuWidget> {
                   leading: const Icon(Icons.photo_camera),
                   title: const Text('Cámara'),
                   onTap: () {
-                    //_imgFromCamera();
                     Navigator.of(context).pop();
                   },
                 ),
@@ -51,25 +45,18 @@ class _MenuWidgetState extends State<MenuWidget> {
         });
   }
 
-  // Future<void> _imgFromCamera() async {
-  //   final pickedFile =
-  //       await _picker.pickImage(source: ImageSource.camera, imageQuality: 50);
-  //   setState(() {
-  //     if (pickedFile != null) {
-  //       _image = File(pickedFile.path);
-  //     }
-  //   });
-  // }
+  // Función para obtener el nombre del usuario
+  Future<String> _ObtenerNombre() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String nombreUsuario = prefs.getString('nombreUsuario') ?? 'Usuario';
+    return nombreUsuario;
+  }
 
-  // Future<void> _imgFromGallery() async {
-  //   final pickedFile =
-  //       await _picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
-  //   setState(() {
-  //     if (pickedFile != null) {
-  //       _image = File(pickedFile.path);
-  //     }
-  //   });
-  // }
+  // Función para obtener el correo del usuario
+  Future<String> _obtenerCorreoUsuario() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('correoUsuario') ?? 'Correo no disponible';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,8 +67,35 @@ class _MenuWidgetState extends State<MenuWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           UserAccountsDrawerHeader(
-            accountName: const Text('nombre del usuario'),
-            accountEmail: const Text('usuario@ejemplo.com'),
+            accountName: FutureBuilder<String>(
+              future:
+                  _ObtenerNombre(), // El método que obtiene el nombre de usuario
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Text('Cargando...');
+                } else if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
+                } else if (snapshot.hasData) {
+                  return Text(snapshot.data!); // Mostrar el nombre de usuario
+                } else {
+                  return Text('Usuario'); // Valor por defecto si no hay datos
+                }
+              },
+            ),
+            accountEmail: FutureBuilder<String>(
+              future: _obtenerCorreoUsuario(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Text('Cargando correo...');
+                } else if (snapshot.hasError) {
+                  return Text('Error al cargar el correo');
+                } else if (snapshot.hasData) {
+                  return Text(snapshot.data!); // Muestra el correo obtenido
+                } else {
+                  return Text('Correo no disponible');
+                }
+              },
+            ),
             currentAccountPicture: GestureDetector(
               onTap: () {
                 _showPicker(context);
@@ -130,7 +144,12 @@ class _MenuWidgetState extends State<MenuWidget> {
               'Configuración',
               style: TextStyle(color: Colors.white),
             ),
-            onTap: () => widget.onItemClick('Configuración'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ConfigurationScreen()),
+              );
+            },
           ),
           ListTile(
             leading:
@@ -167,107 +186,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                             ],
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 5.0),
-                          child: Row(
-                            children: [
-                              Icon(Icons.search,
-                                  color: Colors.blueGrey, size: 24),
-                              SizedBox(width: 10),
-                              Text('Buscar', style: TextStyle(fontSize: 16)),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 5.0),
-                          child: Row(
-                            children: [
-                              Icon(Icons.settings,
-                                  color: Colors.blueGrey, size: 24),
-                              SizedBox(width: 10),
-                              Text('Configuración',
-                                  style: TextStyle(fontSize: 16)),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 5.0),
-                          child: Row(
-                            children: [
-                              Icon(Icons.warning,
-                                  color: Colors.blueGrey, size: 24),
-                              SizedBox(width: 10),
-                              Text('Advertencia',
-                                  style: TextStyle(fontSize: 16)),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 5.0),
-                          child: Row(
-                            children: [
-                              Icon(Icons.info,
-                                  color: Colors.blueGrey, size: 24),
-                              SizedBox(width: 10),
-                              Text('Información',
-                                  style: TextStyle(fontSize: 16)),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 5.0),
-                          child: Row(
-                            children: [
-                              Icon(Icons.lock,
-                                  color: Colors.blueGrey, size: 24),
-                              SizedBox(width: 10),
-                              Text('Seguridad', style: TextStyle(fontSize: 16)),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 5.0),
-                          child: Row(
-                            children: [
-                              Icon(Icons.check,
-                                  color: Colors.blueGrey, size: 24),
-                              SizedBox(width: 10),
-                              Text('Éxito', style: TextStyle(fontSize: 16)),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 5.0),
-                          child: Row(
-                            children: [
-                              Icon(Icons.error,
-                                  color: Colors.blueGrey, size: 24),
-                              SizedBox(width: 10),
-                              Text('Error', style: TextStyle(fontSize: 16)),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 5.0),
-                          child: Row(
-                            children: [
-                              Icon(Icons.map, color: Colors.blueGrey, size: 24),
-                              SizedBox(width: 10),
-                              Text('Mapa', style: TextStyle(fontSize: 16)),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 5.0),
-                          child: Row(
-                            children: [
-                              Icon(Icons.help,
-                                  color: Colors.blueGrey, size: 24),
-                              SizedBox(width: 10),
-                              Text('Ayuda', style: TextStyle(fontSize: 16)),
-                            ],
-                          ),
-                        ),
+                        // Otros elementos de simbología...
                       ],
                     ),
                     actions: <Widget>[
@@ -286,7 +205,7 @@ class _MenuWidgetState extends State<MenuWidget> {
             leading: const Icon(Icons.exit_to_app, color: Colors.red),
             title: const Text(
               'Cerrar Sesión',
-              style: TextStyle(color: Colors.red),
+              style: TextStyle(color: Color.fromARGB(255, 250, 249, 249)),
             ),
             onTap: loginController.logout,
           ),

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ui_universidades_gp/providers/usuario_providers.dart';
 import '../../../routes/routes_controllers.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterView extends StatelessWidget {
-  final UsuarioController usuarioController = Get.put(UsuarioController());
-
+  final UsuarioProviders usuarioController = Get.put(UsuarioProviders());
   final nombreController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -13,11 +15,35 @@ class RegisterView extends StatelessWidget {
 
   RegisterView({super.key});
 
+  // Método para validar el email
+  bool isValidEmail(String email) {
+    String pattern =
+        r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'; // Expresión regular para validar el email
+    RegExp regex = RegExp(pattern);
+    return regex.hasMatch(email);
+  }
+
+  // Método para lanzar la URL de términos y condiciones
+  Future<void> _launchTermsURL() async {
+    final Uri url = Uri.parse(
+        "https://cemanred.com/politicas.html"); // URL de términos y condiciones
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+      throw 'No se pudo abrir $url';
+    }
+  }
+
+  Future<void> handleLoginSuccess(
+      String nombreUsuario, String correoUsuario) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('nombreUsuario', nombreUsuario);
+    await prefs.setString('correoUsuario', correoUsuario);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(backgroundColor: Colors.grey[200]),
-      backgroundColor: Colors.grey[200], // Fondo más claro
+      backgroundColor: Colors.grey[200],
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
@@ -25,91 +51,32 @@ class RegisterView extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Icono del logo de la app
                 Icon(
                   Icons.person_add,
                   size: 80,
-                  color: Colors.cyan, // Cambié el color a azul turquesa
+                  color: Colors.cyan,
                 ),
                 SizedBox(height: 20),
-
-                // Título de la pantalla
                 Text(
                   'Registro',
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
-                    color: Colors.cyan, // Cambié el color a azul turquesa
+                    color: Colors.cyan,
                   ),
                 ),
                 SizedBox(height: 20),
-
-                // Campo de nombre
-                TextField(
-                  controller: nombreController,
-                  decoration: InputDecoration(
-                    labelText: "Nombre",
-                    prefixIcon: Icon(Icons.person),
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide.none,
-                    ),
-                  ),
-                ),
+                _buildTextField(nombreController, "Nombre", Icons.person),
                 SizedBox(height: 20),
-
-                // Campo de email
-                TextField(
-                  controller: emailController,
-                  decoration: InputDecoration(
-                    labelText: "Email",
-                    prefixIcon: Icon(Icons.email),
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide.none,
-                    ),
-                  ),
-                ),
+                _buildTextField(emailController, "Email", Icons.email),
                 SizedBox(height: 20),
-
-                // Campo de contraseña
-                TextField(
-                  controller: passwordController,
-                  decoration: InputDecoration(
-                    labelText: "Contraseña",
-                    prefixIcon: Icon(Icons.lock),
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide.none,
-                    ),
-                  ),
-                  obscureText: true,
-                ),
+                _buildTextField(passwordController, "Contraseña", Icons.lock,
+                    isObscured: true),
                 SizedBox(height: 20),
-
-                // Campo de confirmar contraseña
-                TextField(
-                  controller: confirmPasswordController,
-                  decoration: InputDecoration(
-                    labelText: "Confirmar Contraseña",
-                    prefixIcon: Icon(Icons.lock_outline),
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide.none,
-                    ),
-                  ),
-                  obscureText: true,
-                ),
+                _buildTextField(confirmPasswordController,
+                    "Confirmar Contraseña", Icons.lock_outline,
+                    isObscured: true),
                 SizedBox(height: 10),
-                // aqui va un checkbox y que diga aceptar terminos condiciones.
                 Obx(() => Row(
                       children: [
                         Checkbox(
@@ -126,19 +93,41 @@ class RegisterView extends StatelessWidget {
                                 return AlertDialog(
                                   title: Text('Términos y Condiciones'),
                                   content: SingleChildScrollView(
-                                    child: Text(
-                                      ' '
-                                      ' '
-                                      '',
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Al usar UI Universidades GP, aceptas estos términos: \n\n'
+                                          '1.- Datos de Usuario: Recopilamos información personal para mejorar el servicio. Tus datos se tratan con confidencialidad.\n'
+                                          '2.- Seguridad: Tomamos medidas de protección, aunque no podemos garantizar seguridad absoluta.\n'
+                                          '3.- Propiedad: El contenido de la aplicación es propiedad de UI Universidades o sus licenciantes.\n'
+                                          '4.- Responsabilidad: No somos responsables de daños derivados del uso de la aplicación.\n'
+                                          '5.- Cambios: Podemos actualizar estos términos, y te notificaremos sobre ellos.\n\n'
+                                          'Para más información, consulta los términos y condiciones completos en nuestra página web.',
+                                          textAlign: TextAlign.left,
+                                        ),
+                                        SizedBox(height: 20),
+                                        GestureDetector(
+                                          onTap: _launchTermsURL,
+                                          child: Text(
+                                            'Más información',
+                                            style: TextStyle(
+                                              color: Colors.blue,
+                                              decoration:
+                                                  TextDecoration.underline,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                   actions: [
                                     TextButton(
                                       onPressed: () {
-                                        Navigator.of(context)
-                                            .pop(); // Cerrar el diálogo
+                                        Navigator.of(context).pop();
                                       },
-                                      child: Text('Atras'),
+                                      child: Text('Atrás'),
                                     ),
                                   ],
                                 );
@@ -155,93 +144,114 @@ class RegisterView extends StatelessWidget {
                         ),
                       ],
                     )),
-
-                // Obx(() => Row(
-                //       children: [
-                //         Checkbox(
-                //             value: registerController.isChecked.value,
-                //             onChanged: (bool? newValue) {
-                //               registerController.verifyCheckbox();
-                //             }),
-                //         Text('Aceptar Terminos y condiciones'),
-                //       ],
-                //     )),
                 SizedBox(height: 30),
-
-                // Botón de registro
-                ElevatedButton(
-                  onPressed: () async {
-                    // Validaciones de los campos
-                    if (nombreController.text.isEmpty) {
-                      Get.snackbar("Error", "El nombre es obligatorio",
-                          snackPosition: SnackPosition.TOP);
-                      return;
-                    }
-                    if (emailController.text.isEmpty) {
-                      Get.snackbar("Error", "El email es obligatorio",
-                          snackPosition: SnackPosition.TOP);
-                      return;
-                    }
-                    if (passwordController.text.isEmpty) {
-                      Get.snackbar("Error", "La contraseña es obligatoria",
-                          snackPosition: SnackPosition.TOP);
-                      return;
-                    }
-                    if (confirmPasswordController.text.isEmpty) {
-                      Get.snackbar("Error", "Debes confirmar la contraseña",
-                          snackPosition: SnackPosition.TOP);
-                      return;
-                    }
-                    if (passwordController.text !=
-                        confirmPasswordController.text) {
-                      Get.snackbar("Error", "Las contraseñas no coinciden",
-                          snackPosition: SnackPosition.TOP);
-                      return;
-                    }
-                    if (!registerController.isCheckboxAccepted()) return;
-
-                    String? errorMessage =
-                        await usuarioController.registrarUsuario(
-                      nombreController.text,
-                      emailController.text,
-                      passwordController.text,
-                    );
-
-                    if (errorMessage == null) {
-                      Get.snackbar('Éxito', 'Usuario registrado con éxito');
-                      // Redirige a la pantalla de inicio de sesión
-                      Get.offAllNamed(
-                          '/loginP'); // Cambié el método a `Get.offAllNamed` para regresar al login
-                    } else {
-                      Get.snackbar(
-                          'Error', errorMessage); // Muestra el mensaje de error
-                    }
-
-                    // Limpia los campos
-                    nombreController.clear();
-                    emailController.clear();
-                    passwordController.clear();
-                    confirmPasswordController.clear();
-                  },
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(vertical: 15, horizontal: 80),
-                    backgroundColor:
-                        Colors.cyan, // Cambié el color a azul turquesa
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  child: Text(
-                    "Registrar",
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white, // Texto en color blanco
-                    ),
-                  ),
-                ),
+                _buildRegisterButton(context),
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTextField(
+      TextEditingController controller, String labelText, IconData icon,
+      {bool isObscured = false}) {
+    return TextField(
+      controller: controller,
+      decoration: InputDecoration(
+        labelText: labelText,
+        prefixIcon: Icon(icon),
+        filled: true,
+        fillColor: Colors.white,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide.none,
+        ),
+      ),
+      obscureText: isObscured,
+    );
+  }
+
+  Widget _buildRegisterButton(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () async {
+        // Validaciones de los campos
+        if (nombreController.text.isEmpty) {
+          Get.snackbar("Error", "El nombre es obligatorio",
+              snackPosition: SnackPosition.TOP);
+          return;
+        }
+        if (emailController.text.isEmpty ||
+            !isValidEmail(emailController.text)) {
+          Get.snackbar("Error", "El email debe ser válido",
+              snackPosition: SnackPosition.TOP);
+          return;
+        }
+        if (passwordController.text.isEmpty) {
+          Get.snackbar("Error", "La contraseña es obligatoria",
+              snackPosition: SnackPosition.TOP);
+          return;
+        }
+        if (passwordController.text.length < 6) {
+          Get.snackbar(
+              "Error", "La contraseña debe tener al menos 6 caracteres",
+              snackPosition: SnackPosition.TOP);
+          return;
+        }
+        if (confirmPasswordController.text.isEmpty) {
+          Get.snackbar("Error", "Debes confirmar la contraseña",
+              snackPosition: SnackPosition.TOP);
+          return;
+        }
+        if (passwordController.text != confirmPasswordController.text) {
+          Get.snackbar("Error", "Las contraseñas no coinciden",
+              snackPosition: SnackPosition.TOP);
+          return;
+        }
+        if (!registerController.isCheckboxAccepted()) {
+          Get.snackbar("Error", "Debes aceptar los términos y condiciones",
+              snackPosition: SnackPosition.TOP);
+          return;
+        }
+
+        // Registrar usuario
+        Map<String, dynamic> result = await usuarioController.registrarUsuario(
+          nombreController.text,
+          emailController.text,
+          passwordController.text,
+        );
+
+        if (result['success']) {
+          // Guardar el nombre de usuario y correo en SharedPreferences
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          await prefs.setString('nombreUsuario', nombreController.text);
+          await prefs.setString('correoUsuario', emailController.text);
+
+          Get.snackbar('Éxito', 'Usuario registrado con éxito');
+          Get.offAllNamed('/loginP'); // Redirige al login
+
+          // Limpiar campos
+          nombreController.clear();
+          emailController.clear();
+          passwordController.clear();
+          confirmPasswordController.clear();
+        } else {
+          Get.snackbar('Error', result['error']);
+        }
+      },
+      style: ElevatedButton.styleFrom(
+        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 80),
+        backgroundColor: Colors.cyan,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
+      child: Text(
+        "Registrar",
+        style: TextStyle(
+          fontSize: 16,
+          color: Colors.white,
         ),
       ),
     );

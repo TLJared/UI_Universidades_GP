@@ -8,12 +8,11 @@ class UniversityInfoView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final UniversityController controller = Get.put(UniversityController());
-
     return Scaffold(
       appBar: AppBar(
-        title: Text('Información General'),
+        title: const Text('Información General'),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             // Navegación hacia atrás
             Get.back();
@@ -21,28 +20,28 @@ class UniversityInfoView extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Nombre de la universidad:'),
+            const Text('Nombre de la universidad:'),
             TextField(
               onChanged: (value) => controller.universityName.value = value,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 16),
-            Text('Siglas:'),
+            const SizedBox(height: 16),
+            const Text('Siglas:'),
             TextField(
               onChanged: (value) => controller.siglas.value = value,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Ejemplo: UEEB',
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 16),
-            Text('Tipo de universidad:'),
+            const SizedBox(height: 16),
+            const Text('Tipo de universidad:'),
             Obx(() {
               return DropdownButtonFormField<String>(
                 value: controller.selectedTipo.value.isEmpty
@@ -55,13 +54,13 @@ class UniversityInfoView extends StatelessWidget {
                   );
                 }).toList(),
                 onChanged: (value) => controller.selectedTipo.value = value!,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                 ),
               );
             }),
-            SizedBox(height: 16),
-            Text('Fecha de fundación:'),
+            const SizedBox(height: 16),
+            const Text('Fecha de fundación:'),
             Row(
               children: [
                 Obx(() {
@@ -71,13 +70,13 @@ class UniversityInfoView extends StatelessWidget {
                   );
                 }),
                 IconButton(
-                  icon: Icon(Icons.calendar_today),
+                  icon: const Icon(Icons.calendar_today),
                   onPressed: () => controller.pickDate(context),
                 ),
               ],
             ),
-            SizedBox(height: 16),
-            Text('País:'),
+            const SizedBox(height: 16),
+            const Text('País:'),
             Obx(() {
               return DropdownButtonFormField<String>(
                 value: controller.selectedPais.value.isEmpty
@@ -90,13 +89,13 @@ class UniversityInfoView extends StatelessWidget {
                   );
                 }).toList(),
                 onChanged: (value) => controller.selectedPais.value = value!,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                 ),
               );
             }),
-            SizedBox(height: 16),
-            Text('Ciudad:'),
+            const SizedBox(height: 16),
+            const Text('Ciudad:'),
             Obx(() {
               return DropdownButtonFormField<String>(
                 value: controller.selectedCiudad.value.isEmpty
@@ -109,35 +108,35 @@ class UniversityInfoView extends StatelessWidget {
                   );
                 }).toList(),
                 onChanged: (value) => controller.selectedCiudad.value = value!,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                 ),
               );
             }),
-            SizedBox(height: 16),
-            Text('Dirección física:'),
+            const SizedBox(height: 16),
+            const Text('Dirección física:'),
             TextField(
               onChanged: (value) => controller.direccion.value = value,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 16),
-            Text('Código Postal:'),
+            const SizedBox(height: 16),
+            const Text('Código Postal:'),
             TextField(
               onChanged: (value) => controller.codigoPostal.value = value,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             Center(
               child: ElevatedButton(
                   onPressed: () {
                     Get.toNamed('/form2');
                     Get.snackbar('Correcto!', 'Informacion guardada');
                   },
-                  child: Text('Siguiente')),
+                  child: const Text('Siguiente')),
             )
           ],
         ),

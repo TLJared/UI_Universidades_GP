@@ -14,7 +14,7 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(backgroundColor: Colors.grey[200]),
-      backgroundColor: Colors.grey[200], // Fondo más claro
+      backgroundColor: Colors.grey[200],
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
@@ -22,26 +22,21 @@ class LoginView extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Icono del logo de la app
                 Icon(
                   Icons.school,
                   size: 80,
-                  color: Colors.cyan, // Cambié el color a turquesa
+                  color: Colors.cyan,
                 ),
                 SizedBox(height: 20),
-
-                // Título de la pantalla
                 Text(
                   'Iniciar Sesión',
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
-                    color: Colors.cyan, // Cambié el color a turquesa
+                    color: Colors.cyan,
                   ),
                 ),
                 SizedBox(height: 20),
-
-                // Campo de email
                 TextField(
                   controller: emailController,
                   decoration: InputDecoration(
@@ -56,8 +51,6 @@ class LoginView extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 20),
-
-                // Campo de contraseña
                 TextField(
                   controller: passwordController,
                   decoration: InputDecoration(
@@ -73,8 +66,6 @@ class LoginView extends StatelessWidget {
                   obscureText: true,
                 ),
                 SizedBox(height: 30),
-
-                // Botón de inicio de sesión
                 ElevatedButton(
                   onPressed: () async {
                     // Validaciones de los campos
@@ -92,20 +83,27 @@ class LoginView extends StatelessWidget {
                     String email = emailController.text;
                     String password = passwordController.text;
 
-                    String? errorMessage =
+                    // Intenta iniciar sesión
+                    Map<String, dynamic> result =
                         await usuarioController.login(email, password);
-                    if (errorMessage == null) {
-                      Get.toNamed(
-                          '/home_screen'); // Navegar a la pantalla principal
+
+                    if (result['success']) {
+                      String nombreUsuario = result['nombre'] ?? 'Usuario';
+                      //String correoUsuario = result['email'] ?? 'Correo';
+
+                      // Navega a la pantalla principal y pasa el nombre del usuario
+                      Get.offNamed('/home_screen', arguments: {
+                        'nombre': nombreUsuario,
+                      });
                     } else {
-                      Get.snackbar('Error', errorMessage,
-                          snackPosition:
-                              SnackPosition.TOP); // Mostrar mensaje de error
+                      // Muestra el mensaje de error devuelto
+                      Get.snackbar('Error', "Las credenciales son incorrectas",
+                          snackPosition: SnackPosition.TOP);
                     }
                   },
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(vertical: 15, horizontal: 80),
-                    backgroundColor: Colors.cyan, // Cambié el color a turquesa
+                    backgroundColor: Colors.cyan,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -114,13 +112,11 @@ class LoginView extends StatelessWidget {
                     'Iniciar Sesión',
                     style: TextStyle(
                       fontSize: 16,
-                      color: Colors.white, // Texto en color blanco
+                      color: Colors.white,
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
-
-                // Botón de registro
+                SizedBox(height: 10),
                 TextButton(
                   onPressed: () {
                     Get.toNamed('/registerP');
@@ -129,7 +125,20 @@ class LoginView extends StatelessWidget {
                     "¿No tienes cuenta? Regístrate",
                     style: TextStyle(
                       fontSize: 16,
-                      color: Colors.cyan, // Cambié el color a turquesa
+                      color: Colors.cyan,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+                TextButton(
+                  onPressed: () {
+                    Get.toNamed('/ResetP');
+                  },
+                  child: Text(
+                    "¿Se te olvido la contraseña?",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.cyan,
                     ),
                   ),
                 ),
