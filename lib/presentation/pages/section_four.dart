@@ -65,13 +65,13 @@ class SectionFour extends StatelessWidget {
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
-                    color: Colors.black87,
+                    color: Color.fromARGB(255, 54, 121, 230),
                   ),
                 ),
                 subtitle: Text(
                   employee['position']!,
                   style: TextStyle(
-                    color: Colors.grey[700],
+                    color: Color.fromARGB(255, 63, 228, 54),
                     fontSize: 16,
                   ),
                 ),
