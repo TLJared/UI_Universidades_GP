@@ -3,7 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
-
+//Funcionamiento de la ubicacion de las universidades de la posicion del usuario
 class UbicacionController extends GetxController {
   final _currentPosition = Rxn<LatLng>();
   final _isLoading = true.obs;
