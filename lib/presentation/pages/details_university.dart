@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../datosApp/models/universities_model.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class UniversityDetailView extends StatelessWidget {
   final ItemModel item;
@@ -397,6 +398,28 @@ class UniversityDetailView extends StatelessWidget {
                 ...item.licenciaturas
                     .map((licenciatura) => Text("- $licenciatura"))
                     .toList(),
+                Column(
+                  children: [
+                    const SizedBox(height: 20),
+                    Text(
+                      "URL",
+                      style: const TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        launchUrl(Uri.parse(item.url));
+                      },
+                      child: Text(
+                        item.url,
+                        style: TextStyle(
+                          color: Colors.blue,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    ),
+                  ],
+                )
               ],
             ),
           ),

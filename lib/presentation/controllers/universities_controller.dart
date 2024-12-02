@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:ui_universidades_gp/datosApp/models/universities_model.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ItemsUniController extends GetxController {
   var UniversitiesItems = <ItemModel>[].obs;
@@ -39,6 +40,7 @@ class ItemsUniController extends GetxController {
             "Licenciatura en Gastronomía",
             "Licenciatura en Negocios Internacionales"
           ],
+          url: 'https://www.utpuebla.edu.mx/index.html', // Enlace de la universidad
           FechaPago: "Semestral",
           descripBecas:
               "Las becas universitarias son una herramienta clave para apoyar a los estudiantes que desean acceder a la educación superior, pero que enfrentan limitaciones económicas o buscan reconocimiento por su desempeño académico, artístico, deportivo o social. Estas ayudas, ofrecidas por universidades, gobiernos, organizaciones privadas y fundaciones, están diseñadas para cubrir parcial o totalmente los costos de matrícula, alojamiento, materiales de estudio u otros gastos relacionados con la vida estudiantil. Para los postulantes a la universidad, las becas representan no solo una oportunidad para aliviar la carga económica, sino también un incentivo para destacar en sus áreas de interés y comprometerse con su formación profesional. Conocer los diferentes tipos de becas disponibles y los requisitos para aplicar puede marcar la diferencia en el acceso y éxito en la educación superior.",
@@ -107,6 +109,7 @@ class ItemsUniController extends GetxController {
             "Licenciatura en Gastronomía",
             "Licenciatura en Negocios Internacionales"
           ],
+          url: 'https://www.buap.mx/', // Enlace de la universidad
           FechaPago: "Semestral",
           descripBecas:
               "Las becas universitarias son una herramienta clave para apoyar a los estudiantes que desean acceder a la educación superior, pero que enfrentan limitaciones económicas o buscan reconocimiento por su desempeño académico, artístico, deportivo o social. Estas ayudas, ofrecidas por universidades, gobiernos, organizaciones privadas y fundaciones, están diseñadas para cubrir parcial o totalmente los costos de matrícula, alojamiento, materiales de estudio u otros gastos relacionados con la vida estudiantil. Para los postulantes a la universidad, las becas representan no solo una oportunidad para aliviar la carga económica, sino también un incentivo para destacar en sus áreas de interés y comprometerse con su formación profesional. Conocer los diferentes tipos de becas disponibles y los requisitos para aplicar puede marcar la diferencia en el acceso y éxito en la educación superior.",
@@ -181,6 +184,7 @@ class ItemsUniController extends GetxController {
             "Licenciatura en Gastronomía",
             "Licenciatura en Negocios Internacionales"
           ],
+          url: 'https://www.uppuebla.edu.mx/', // Enlace de la universidad
           FechaPago: "Semestral",
           descripBecas:
               "Las becas universitarias son una herramienta clave para apoyar a los estudiantes que desean acceder a la educación superior, pero que enfrentan limitaciones económicas o buscan reconocimiento por su desempeño académico, artístico, deportivo o social. Estas ayudas, ofrecidas por universidades, gobiernos, organizaciones privadas y fundaciones, están diseñadas para cubrir parcial o totalmente los costos de matrícula, alojamiento, materiales de estudio u otros gastos relacionados con la vida estudiantil. Para los postulantes a la universidad, las becas representan no solo una oportunidad para aliviar la carga económica, sino también un incentivo para destacar en sus áreas de interés y comprometerse con su formación profesional. Conocer los diferentes tipos de becas disponibles y los requisitos para aplicar puede marcar la diferencia en el acceso y éxito en la educación superior.",
@@ -250,6 +254,7 @@ class ItemsUniController extends GetxController {
             "Licenciatura en Gastronomía",
             "Licenciatura en Negocios Internacionales"
           ],
+          url: 'https://www.puebla.tecnm.mx/convocatoria/', // Enlace de la universidad
           FechaPago: "Semestral",
           descripBecas:
               "Las becas universitarias son una herramienta clave para apoyar a los estudiantes que desean acceder a la educación superior, pero que enfrentan limitaciones económicas o buscan reconocimiento por su desempeño académico, artístico, deportivo o social. Estas ayudas, ofrecidas por universidades, gobiernos, organizaciones privadas y fundaciones, están diseñadas para cubrir parcial o totalmente los costos de matrícula, alojamiento, materiales de estudio u otros gastos relacionados con la vida estudiantil. Para los postulantes a la universidad, las becas representan no solo una oportunidad para aliviar la carga económica, sino también un incentivo para destacar en sus áreas de interés y comprometerse con su formación profesional. Conocer los diferentes tipos de becas disponibles y los requisitos para aplicar puede marcar la diferencia en el acceso y éxito en la educación superior.",

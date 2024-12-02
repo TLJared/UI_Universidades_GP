@@ -20,6 +20,7 @@ class ItemModel extends GetxController {
   final List<String> areaApoyoEstudiantes;
   final String descripContactos;
   final List<String> contactos;
+  final String url;
 
   ItemModel(
       {required this.ImageURL,
@@ -39,5 +40,7 @@ class ItemModel extends GetxController {
       required this.descripContactos,
       required this.descripDepartHelpStudents,
       required this.descriptionInge,
-      required this.descrpcionPrecio});
+      required this.descrpcionPrecio,
+      required this.url});
 }
+
