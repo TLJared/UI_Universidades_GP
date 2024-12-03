@@ -142,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
             body: _getBodyContent(),
-            floatingActionButton: _getFloatingActionButton(),
+            //floatingActionButton: _getFloatingActionButton(),
             bottomNavigationBar: BottomNavBar(
               selectedIndex: _selectedIndex,
               onItemTapped: _onItemTapped,
@@ -158,7 +158,7 @@ class _HomeScreenState extends State<HomeScreen> {
       case 0:
         return SectionOne();
       case 1:
-        return const SectionTwo();
+        return SectionTwo();
       case 2:
         return UbicacionView();
       case 3:
@@ -168,30 +168,30 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  Widget? _getFloatingActionButton() {
-    switch (_selectedIndex) {
-      case 0:
-        return FloatButton(
-          onPressed: () {
-            Get.to(() => null,
-                transition: Transition.fade,
-                duration: const Duration(milliseconds: 500));
-          },
-          icon: Icons.add,
-          backgroundColor: Colors.blue,
-        );
-      case 1:
-        return FloatButton(
-          onPressed: () {
-            Get.to(() => null,
-                transition: Transition.fade,
-                duration: const Duration(milliseconds: 500));
-          },
-          icon: Icons.task,
-          backgroundColor: Colors.green,
-        );
-      default:
-        return null;
-    }
-  }
+  // Widget? _getFloatingActionButton() {
+  //   switch (_selectedIndex) {
+  //     case 0:
+  //       return FloatButton(
+  //         onPressed: () {
+  //           Get.to(() => null,
+  //               transition: Transition.fade,
+  //               duration: const Duration(milliseconds: 500));
+  //         },
+  //         icon: Icons.add,
+  //         backgroundColor: Colors.blue,
+  //       );
+  //     case 1:
+  //       return FloatButton(
+  //         onPressed: () {
+  //           Get.to(() => null,
+  //               transition: Transition.fade,
+  //               duration: const Duration(milliseconds: 500));
+  //         },
+  //         icon: Icons.task,
+  //         backgroundColor: Colors.green,
+  //       );
+  //     default:
+  //       return null;
+  //   }
+  // }
 }

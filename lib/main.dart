@@ -2,14 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ui_universidades_gp/datosApp/services/connectivity_services.dart';
 import 'package:ui_universidades_gp/preferencias_usuario/preferencias_usuario.dart';
-import 'package:ui_universidades_gp/presentation/pages/formulario/form_university_administrative_data.dart';
-import 'package:ui_universidades_gp/presentation/pages/formulario/form_university_inf_contact.dart';
-import 'package:ui_universidades_gp/presentation/pages/formulario/form_university_inf_generalOne.dart';
-import 'package:ui_universidades_gp/presentation/pages/formulario/login_view.dart';
-import 'package:ui_universidades_gp/presentation/pages/formulario/register_view.dart';
-import 'package:ui_universidades_gp/presentation/pages/home_screen.dart';
-import 'package:ui_universidades_gp/presentation/pages/login_screen.dart';
-import 'package:ui_universidades_gp/presentation/pages/welcome.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:ui_universidades_gp/routes/routes_pages.dart';
 import 'firebase_options.dart'; // Este archivo se genera con flutterfire_cli

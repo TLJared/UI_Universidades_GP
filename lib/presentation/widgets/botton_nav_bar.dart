@@ -16,8 +16,8 @@ class BottomNavBar extends StatelessWidget {
           label: 'Universidades',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.monetization_on_outlined),
-          label: 'Costos',
+          icon: Icon(Icons.apartment_sharp),
+          label: 'Departamentos',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.location_on),

@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class ItemsUniController extends GetxController {
   var UniversitiesItems = <ItemModel>[].obs;
+  final currentIndex = 0.obs;
 
   @override
   void onInit() {
@@ -40,7 +41,8 @@ class ItemsUniController extends GetxController {
             "Licenciatura en Gastronomía",
             "Licenciatura en Negocios Internacionales"
           ],
-          url: 'https://www.utpuebla.edu.mx/index.html', // Enlace de la universidad
+          url:
+              'https://www.utpuebla.edu.mx/index.html', // Enlace de la universidad
           FechaPago: "Semestral",
           descripBecas:
               "Las becas universitarias son una herramienta clave para apoyar a los estudiantes que desean acceder a la educación superior, pero que enfrentan limitaciones económicas o buscan reconocimiento por su desempeño académico, artístico, deportivo o social. Estas ayudas, ofrecidas por universidades, gobiernos, organizaciones privadas y fundaciones, están diseñadas para cubrir parcial o totalmente los costos de matrícula, alojamiento, materiales de estudio u otros gastos relacionados con la vida estudiantil. Para los postulantes a la universidad, las becas representan no solo una oportunidad para aliviar la carga económica, sino también un incentivo para destacar en sus áreas de interés y comprometerse con su formación profesional. Conocer los diferentes tipos de becas disponibles y los requisitos para aplicar puede marcar la diferencia en el acceso y éxito en la educación superior.",
@@ -82,7 +84,19 @@ class ItemsUniController extends GetxController {
           ],
           descripContactos:
               "El apartado de contactos de la universidad está diseñado para proporcionar a los estudiantes, aspirantes y público en general la información necesaria para resolver dudas, obtener orientación o iniciar trámites relacionados con la institución. A través de este espacio, las personas pueden acceder a números telefónicos, correos electrónicos y direcciones de las oficinas principales, como admisiones, servicios escolares, orientación vocacional, y más. Este canal de comunicación facilita el acceso directo a los departamentos correspondientes, garantizando una atención personalizada y oportuna para quienes buscan información adicional sobre programas académicos, becas, actividades extracurriculares o cualquier aspecto relacionado con la vida universitaria.",
-          contactos: ["No disponibles por ahora."]),
+          contactos: ["No disponibles por ahora."],
+          imageDepartamentos: [
+            'https://via.placeholder.com/600x400?text=Image+1',
+            'https://via.placeholder.com/600x400?text=Image+2',
+            'https://via.placeholder.com/600x400?text=Image+3',
+            'https://via.placeholder.com/600x400?text=Image+4',
+          ],
+          descriptionDepartamentos: [
+            'Descripción de la imagen 1',
+            'Descripción de la imagen 2',
+            'Descripción de la imagen 3',
+            'Descripción de la imagen 4',
+          ]),
       ItemModel(
           ImageURL:
               'https://logos-world.net/wp-content/uploads/2022/06/BUAP-Symbol.png',
@@ -156,7 +170,19 @@ class ItemsUniController extends GetxController {
           ],
           descripContactos:
               "El apartado de contactos de la universidad está diseñado para proporcionar a los estudiantes, aspirantes y público en general la información necesaria para resolver dudas, obtener orientación o iniciar trámites relacionados con la institución. A través de este espacio, las personas pueden acceder a números telefónicos, correos electrónicos y direcciones de las oficinas principales, como admisiones, servicios escolares, orientación vocacional, y más. Este canal de comunicación facilita el acceso directo a los departamentos correspondientes, garantizando una atención personalizada y oportuna para quienes buscan información adicional sobre programas académicos, becas, actividades extracurriculares o cualquier aspecto relacionado con la vida universitaria.",
-          contactos: ["No disponibles por ahora."]),
+          contactos: ["No disponibles por ahora."],
+          imageDepartamentos: [
+            'https://via.placeholder.com/600x400?text=Image+1',
+            'https://via.placeholder.com/600x400?text=Image+2',
+            'https://via.placeholder.com/600x400?text=Image+3',
+            'https://via.placeholder.com/600x400?text=Image+4',
+          ],
+          descriptionDepartamentos: [
+            'Descripción de la imagen 1',
+            'Descripción de la imagen 2',
+            'Descripción de la imagen 3',
+            'Descripción de la imagen 4',
+          ]),
       ItemModel(
           //assets/upp.png
           ImageURL:
@@ -227,7 +253,19 @@ class ItemsUniController extends GetxController {
           ],
           descripContactos:
               "El apartado de contactos de la universidad está diseñado para proporcionar a los estudiantes, aspirantes y público en general la información necesaria para resolver dudas, obtener orientación o iniciar trámites relacionados con la institución. A través de este espacio, las personas pueden acceder a números telefónicos, correos electrónicos y direcciones de las oficinas principales, como admisiones, servicios escolares, orientación vocacional, y más. Este canal de comunicación facilita el acceso directo a los departamentos correspondientes, garantizando una atención personalizada y oportuna para quienes buscan información adicional sobre programas académicos, becas, actividades extracurriculares o cualquier aspecto relacionado con la vida universitaria.",
-          contactos: ["No disponibles por ahora."]),
+          contactos: ["No disponibles por ahora."],
+          imageDepartamentos: [
+            'https://via.placeholder.com/600x400?text=Image+1',
+            'https://via.placeholder.com/600x400?text=Image+2',
+            'https://via.placeholder.com/600x400?text=Image+3',
+            'https://via.placeholder.com/600x400?text=Image+4',
+          ],
+          descriptionDepartamentos: [
+            'Descripción de la imagen 1',
+            'Descripción de la imagen 2',
+            'Descripción de la imagen 3',
+            'Descripción de la imagen 4',
+          ]),
       ItemModel(
           ImageURL:
               'https://s3.amazonaws.com/s3.timetoast.com/public/uploads/photos/12211896/itp.png',
@@ -254,7 +292,8 @@ class ItemsUniController extends GetxController {
             "Licenciatura en Gastronomía",
             "Licenciatura en Negocios Internacionales"
           ],
-          url: 'https://www.puebla.tecnm.mx/convocatoria/', // Enlace de la universidad
+          url:
+              'https://www.puebla.tecnm.mx/convocatoria/', // Enlace de la universidad
           FechaPago: "Semestral",
           descripBecas:
               "Las becas universitarias son una herramienta clave para apoyar a los estudiantes que desean acceder a la educación superior, pero que enfrentan limitaciones económicas o buscan reconocimiento por su desempeño académico, artístico, deportivo o social. Estas ayudas, ofrecidas por universidades, gobiernos, organizaciones privadas y fundaciones, están diseñadas para cubrir parcial o totalmente los costos de matrícula, alojamiento, materiales de estudio u otros gastos relacionados con la vida estudiantil. Para los postulantes a la universidad, las becas representan no solo una oportunidad para aliviar la carga económica, sino también un incentivo para destacar en sus áreas de interés y comprometerse con su formación profesional. Conocer los diferentes tipos de becas disponibles y los requisitos para aplicar puede marcar la diferencia en el acceso y éxito en la educación superior.",
@@ -301,8 +340,135 @@ class ItemsUniController extends GetxController {
           ],
           descripContactos:
               "El apartado de contactos de la universidad está diseñado para proporcionar a los estudiantes, aspirantes y público en general la información necesaria para resolver dudas, obtener orientación o iniciar trámites relacionados con la institución. A través de este espacio, las personas pueden acceder a números telefónicos, correos electrónicos y direcciones de las oficinas principales, como admisiones, servicios escolares, orientación vocacional, y más. Este canal de comunicación facilita el acceso directo a los departamentos correspondientes, garantizando una atención personalizada y oportuna para quienes buscan información adicional sobre programas académicos, becas, actividades extracurriculares o cualquier aspecto relacionado con la vida universitaria.",
-          contactos: ["No disponibles por ahora."]),
-      // ItemModel(
+          contactos: ["No disponibles por ahora."],
+          imageDepartamentos: [
+            'https://via.placeholder.com/600x400?text=Image+1',
+            'https://via.placeholder.com/600x400?text=Image+2',
+            'https://via.placeholder.com/600x400?text=Image+3',
+            'https://via.placeholder.com/600x400?text=Image+4',
+          ],
+          descriptionDepartamentos: [
+            'Descripción de la imagen 1',
+            'Descripción de la imagen 2',
+            'Descripción de la imagen 3',
+            'Descripción de la imagen 4',
+          ]),
+    ].obs;
+  }
+
+  void updateIndex(int index) {
+    currentIndex.value = index;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+// void fetchItems() {
+//     // Aquí podrías cargar datos desde una API o base de datos.
+//     UniversitiesItems.value = [
+// ItemModel(
+//           ImageURL:
+//               'https://s3.amazonaws.com/s3.timetoast.com/public/uploads/photos/12211896/itp.png',
+//           name: 'Instituto Tecnologico de Puebla',
+//           description:
+//               'El Instituto Tecnológico de Puebla (ITP) es una destacada institución de educación superior pública ubicada en Puebla, México, que forma parte del Tecnológico Nacional de México. Desde su fundación en 1972, el ITP se ha enfocado en ofrecer programas académicos de excelencia en ingeniería, tecnología y ciencias aplicadas, fomentando la innovación y el desarrollo profesional. Con modernas instalaciones, laboratorios especializados y una sólida tradición educativa, el ITP prepara a sus estudiantes para contribuir al progreso industrial y tecnológico del país, destacándose como un pilar en la formación de talento altamente calificado.',
+//           descrpcionPrecio:
+//               "Los costos de estudiar en una universidad son un factor clave que los estudiantes y sus familias deben considerar al planificar la educación superior. Estos gastos incluyen una variedad de rubros como la matrícula, las cuotas semestrales, los materiales de estudio, y otros aspectos asociados como el alojamiento, la alimentación y el transporte. Aunque varían según el tipo de institución (pública o privada), la ubicación geográfica y el programa académico, entenderlos a profundidad permite tomar decisiones informadas y preparar un presupuesto adecuado. Conocer estos costos no solo ayuda a evaluar la viabilidad económica, sino también a buscar opciones de financiamiento, becas o apoyos que faciliten el acceso a la educación superior.",
+//           Precio: [
+//             "Matrícula: Inscripción anual: 1,000 - 5,000 MXN.",
+//             "Matrícula: Cuota por semestre: 500 - 2,000 MXN.",
+//             "Materiales y libros: Por semestre: 1,000 - 4,000 MXN",
+//           ],
+//           descriptionInge:
+//               "Elegir una carrera universitaria es una de las decisiones más importantes en la vida académica de un estudiante, ya que define el camino hacia su desarrollo profesional y personal. Las universidades ofrecen una amplia variedad de programas que abarcan distintas áreas del conocimiento, como ciencias exactas, humanidades, artes, tecnología, salud y negocios, entre otras. Cada carrera está diseñada para formar a los estudiantes con habilidades específicas y conocimientos profundos en un campo particular, permitiéndoles afrontar los retos del mercado laboral actual. Esta diversidad de opciones brinda a los jóvenes la oportunidad de explorar sus intereses, talentos y aspiraciones, abriendo las puertas hacia un futuro lleno de posibilidades y crecimiento.",
+//           ingenierias: [
+//             "Ingeniería en desarrollo de software multiplataforma",
+//             "Ingeniería ambiental",
+//             "Ingeniería agropecuaria",
+//             "Ingeniería en mecatrónica"
+//           ],
+//           licenciaturas: [
+//             "Licenciatura en lenguas",
+//             "Licenciatura en Gastronomía",
+//             "Licenciatura en Negocios Internacionales"
+//           ],
+//           url:
+//               'https://www.puebla.tecnm.mx/convocatoria/', // Enlace de la universidad
+//           FechaPago: "Semestral",
+//           descripBecas:
+//               "Las becas universitarias son una herramienta clave para apoyar a los estudiantes que desean acceder a la educación superior, pero que enfrentan limitaciones económicas o buscan reconocimiento por su desempeño académico, artístico, deportivo o social. Estas ayudas, ofrecidas por universidades, gobiernos, organizaciones privadas y fundaciones, están diseñadas para cubrir parcial o totalmente los costos de matrícula, alojamiento, materiales de estudio u otros gastos relacionados con la vida estudiantil. Para los postulantes a la universidad, las becas representan no solo una oportunidad para aliviar la carga económica, sino también un incentivo para destacar en sus áreas de interés y comprometerse con su formación profesional. Conocer los diferentes tipos de becas disponibles y los requisitos para aplicar puede marcar la diferencia en el acceso y éxito en la educación superior.",
+//           becas: [
+//             "BECA Por mérito académico: Otorgadas a estudiantes con un promedio destacado.",
+//             "BECA Por rendimiento en exámenes de admisión: Para quienes obtienen calificaciones sobresalientes en pruebas de ingreso. ",
+//             "BECA Por excelencia en áreas específicas: Enfocadas en materias como matemáticas, ciencias o artes.",
+//             "BECA DEPORTIVA Por representación deportiva: Para estudiantes que participan en equipos universitarios.",
+//             "BECA ECONOMICA Por necesidad económica: Destinadas a estudiantes con ingresos familiares limitados. ",
+//             "BECA ECONIMICA Para hijos de trabajadores: Ofrecidas por sindicatos, empresas o instituciones gubernamentales."
+//           ],
+//           descripActiCulturales:
+//               "Las becas universitarias son una herramienta clave para apoyar a los estudiantes que desean acceder a la educación superior, pero que enfrentan limitaciones económicas o buscan reconocimiento por su desempeño académico, artístico, deportivo o social. Estas ayudas, ofrecidas por universidades, gobiernos, organizaciones privadas y fundaciones, están diseñadas para cubrir parcial o totalmente los costos de matrícula, alojamiento, materiales de estudio u otros gastos relacionados con la vida estudiantil. Para los postulantes a la universidad, las becas representan no solo una oportunidad para aliviar la carga económica, sino también un incentivo para destacar en sus áreas de interés y comprometerse con su formación profesional. Conocer los diferentes tipos de becas disponibles y los requisitos para aplicar puede marcar la diferencia en el acceso y éxito en la educación superior.",
+//           deportesCultares: [
+//             "Danza folclórica",
+//             "Danza contemporánea",
+//             "Teatro o actuación",
+//             "Canto coral",
+//             "Fotografía artística",
+//             "",
+//             "",
+//             "",
+//             "",
+//             "",
+//             "",
+//           ],
+//           ActividadesExtracurriculares: [
+//             "Club de lectura",
+//             "Club de debate",
+//             "Investigación científica",
+//             "Equipo de fútbol, básquetbol, vóleibol.",
+//             "Torneos de ajedrez.",
+//             "Artes marciales (taekwondo, karate).",
+//             "Atletismo y actividades al aire libre (senderismo, ciclismo).",
+//             "Hackathons o competencias de programación.",
+//           ],
+//           descripDepartHelpStudents:
+//               "Las universidades cuentan con diversos departamentos diseñados para apoyar a los estudiantes en distintas etapas de su formación académica y personal, asegurando una experiencia integral y enriquecedora. Entre ellos, destacan áreas como **Orientación vocacional y profesional**, que ayuda a los estudiantes a identificar sus intereses y habilidades para elegir la carrera que mejor se adapte a sus objetivos; **Consejería psicológica y emocional**, que ofrece apoyo en temas de bienestar mental y emocional, promoviendo un ambiente saludable para el aprendizaje. Además, las **oficinas de servicios internacionales** facilitan oportunidades de intercambio cultural y académico, brindando orientación a estudiantes extranjeros y locales interesados en ampliar sus horizontes. Por otro lado, la **bolsa de trabajo y orientación para prácticas profesionales** conecta a los alumnos con el mundo laboral, ofreciendo asesoría y oportunidades para adquirir experiencia práctica. Estos departamentos son esenciales para acompañar a los estudiantes en su desarrollo integral y prepararlos para enfrentar los desafíos del futuro.",
+//           areaApoyoEstudiantes: [
+//             "Orientación vocacional y profesional.",
+//             "Consejería psicológica y emocional.",
+//             "Oficinas de servicios internacionales (para intercambio o estudiantes extranjeros).",
+//             "Bolsa de trabajo y orientación para prácticas profesionales.",
+//           ],
+//           descripContactos:
+//               "El apartado de contactos de la universidad está diseñado para proporcionar a los estudiantes, aspirantes y público en general la información necesaria para resolver dudas, obtener orientación o iniciar trámites relacionados con la institución. A través de este espacio, las personas pueden acceder a números telefónicos, correos electrónicos y direcciones de las oficinas principales, como admisiones, servicios escolares, orientación vocacional, y más. Este canal de comunicación facilita el acceso directo a los departamentos correspondientes, garantizando una atención personalizada y oportuna para quienes buscan información adicional sobre programas académicos, becas, actividades extracurriculares o cualquier aspecto relacionado con la vida universitaria.",
+//           contactos: ["No disponibles por ahora."],
+//           imageDepartamentos: [
+//             'https://via.placeholder.com/600x400?text=Image+1',
+//             'https://via.placeholder.com/600x400?text=Image+2',
+//             'https://via.placeholder.com/600x400?text=Image+3',
+//             'https://via.placeholder.com/600x400?text=Image+4',
+//           ],
+//           descriptionDepartamentos: [
+//             'Descripción de la imagen 1',
+//             'Descripción de la imagen 2',
+//             'Descripción de la imagen 3',
+//             'Descripción de la imagen 4',
+//           ]),
+//     ].obs;
+
+//     void updateIndex(int index) {
+//       currentIndex.value = index;
+//     }
+//   }
+// }
+// ItemModel(
       //     ImageURL: 'https://via.placeholder.com/150',
       //     name: 'Item 5',
       //     description:
@@ -415,6 +581,3 @@ class ItemsUniController extends GetxController {
       //       "Bolsa de trabajo y orientación para prácticas profesionales.",
       //     ],
       //     contactos: ["No disponibles por ahora."]),
-    ].obs;
-  }
-}
